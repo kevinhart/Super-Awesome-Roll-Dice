@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="sampleCharacterSheetRender-Table.xsl"?>
+<character>
+<name>Torik</name>
+<player>John</player>
+<age>24</age>
+<race>Human</race>
+<class>Warrior</class>
+<gender>Male</gender>
+<level>1</level>
+<experience>125</experience>
+<attributes>
+	<strength>17</strength>
+	<dexterity>14</dexterity>
+	<mind>12</mind>
+	<charisma>8</charisma>
+</attributes>
+<hitpoints>22</hitpoints>
+<baseAttackBonus>1</baseAttackBonus>
+<baseDamageBonus>1</baseDamageBonus>
+<attacks>1</attacks>
+<skills>
+	<physical>2</physical>
+	<subterfuge>0</subterfuge>
+	<knowledge>0</knowledge>
+	<communication>0</communication>
+	<survival>1</survival>
+	<fabrication>1</fabrication>
+</skills>
+<inventory>
+	<armour>
+		<name>Chain Mail</name>
+		<dexPenalty>0</dexPenalty>
+		<minStr>12</minStr>
+		<acBonus>5</acBonus>
+	</armour>
+	<shield>
+		<name>Large Shield</name>
+		<dexPenalty>-2</dexPenalty>
+		<minStr>10</minStr>
+		<acBonus>2</acBonus>
+	</shield>
+	<weapon twohanded="yes">
+		<name>Battle Axe</name>
+		<stat>Str</stat>
+		<damage>heavy</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Dagger</name>
+		<stat>Str</stat>
+		<damage>light</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Thrown Dagger</name>
+		<stat>Dex</stat>
+		<damage>light</damage>
+		<range>5</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Long Bow</name>
+		<stat>Dex</stat>
+		<damage>heavy</damage>
+		<range>30</range>
+	</weapon>
+	<money>
+		<gold>1</gold>
+		<silver>9</silver>
+		<copper>25</copper>
+	</money>
+	<item>
+		<name>Torch</name>
+		<descrip>Provides light for 2 hours</descrip>
+	</item>
+	<item>
+		<name>Waterskin</name>
+		<descrip>Holds enough water for 1 day</descrip>
+	</item>
+	<item>
+		<name>Crowbar</name>
+		<descrip>Gives the hero a +2 bonus to disarming traps and prying open doors</descrip>
+	</item>
+</inventory>
+</character>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SuperAwesomeRollDiceService.SuperAwesomeRollDiceService" CodeBehind="SuperAwesomeRollDiceService.svc.cs" %>
