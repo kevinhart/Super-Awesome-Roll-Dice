@@ -4,7 +4,7 @@
  */
  
  var userName = "";
- var wsAddress = "http://kubrick.student.rit.edu:8080/SARDS"
+ var wsAddress = "http://saskatoon.cs.rit.edu:4241/sards"
  var proxy = "proxy.php";
  
  function login()
