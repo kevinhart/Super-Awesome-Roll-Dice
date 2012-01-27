@@ -59,14 +59,14 @@ function populateTable(){
 		//cell.innerHTML = "<a href='http://129.21.141.16/"+arrayOfSheetNames[name]+"' >"+arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."))+"</a>";
 		cell.innerHTML = arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."));
 		cell = row.insertCell(1);
-		cell.innerHTML = "<a href='http://129.21.141.16/"+arrayOfSheetNames[name]+"' >View</a>";
+		cell.innerHTML = "<a href='http://saskatoon.cs.rit.edu/kth1775/"+arrayOfSheetNames[name]+"' >View</a>";
 		cell = row.insertCell(2);
 		cell.innerHTML = "<button onclick='editSheet'>Edit</button>";
 	}	
 }
 
 function getSheetNames(userName){
-	var names = "xml.xml, xml1.xml, xml2.xml"//call the database
+	var names = "Torik.xml, xml1.xml, xml2.xml"//call the database
 	var nameArray = names.split(",");
 	return nameArray;
 }
