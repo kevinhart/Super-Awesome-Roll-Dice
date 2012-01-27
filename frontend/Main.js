@@ -59,7 +59,7 @@ function populateTable(){
 		//cell.innerHTML = "<a href='http://129.21.141.16/"+arrayOfSheetNames[name]+"' >"+arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."))+"</a>";
 		cell.innerHTML = arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."));
 		cell = row.insertCell(1);
-		cell.innerHTML = "<a href='http://saskatoon.cs.rit.edu/kth1775/"+arrayOfSheetNames[name]+"' >View</a>";
+		cell.innerHTML = "<a href='http://saskatoon.cs.rit.edu:4242/sardstest/"+arrayOfSheetNames[name]+"' >View</a>";
 		cell = row.insertCell(2);
 		cell.innerHTML = "<button onclick='editSheet'>Edit</button>";
 	}	
