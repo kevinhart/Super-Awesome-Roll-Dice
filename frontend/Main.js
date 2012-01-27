@@ -66,7 +66,7 @@ function populateTable(){
 }
 
 function getSheetNames(userName){
-	var names = "Torik.xml, xml1.xml, xml2.xml"//call the database
+	var names = "Torik.xml"//call the database
 	var nameArray = names.split(",");
 	return nameArray;
 }
