@@ -1,15 +1,36 @@
 /**
  * @author John Deer
+ * @contributor Kevin Hart
  */
  
  var userName = "";
+ var wsAddress = "http://kubrick.student.rit.edu:8080/SARDS"
+ var proxy = "proxy.php";
  
  function login()
 {
 	var login = document.getElementById("login").value;
 	var password = document.getElementById("password").value;
-	if(login=="kevin"//handleLogin(login, hash(password))
-	){	
+	handleLogin(login, SHA1(password));
+}
+
+function handleLogin( user, pass ) {
+	var url = wsAddress + "?action=login&username=" + user + "&password=" + pass;
+	$.ajax( {
+		async: false,
+		data: { "path" : encodeURI( url ) },
+		url: proxy,
+		success: function( data, textStatus, jqxhr ) { loginResult( data ); },
+		error: function( jqhxr, status, errorThrown ) { alert( "An error occurred connecting to the login server." ); },
+		dataType: "json"
+	} );
+}
+
+function loginResult( result ) {
+	if ( result[ "r" ] != 0 ) {
+		alert( result[ "t" ] );
+	} else {
+		alert( result[ "t" ] );
 		document.getElementById("login").style.visibility = 'hidden';
 		document.getElementById("password").style.visibility = 'hidden';
 		document.getElementById("loginText").style.visibility = 'hidden';
@@ -20,10 +41,6 @@
 		
 		document.getElementById("viewButton").style.visibility = 'visible';
 		document.getElementById("createButton").style.visibility = 'visible';
-		
-		
-	}else{
-		alert("Invalid information, try again");
 	}
 }
 
