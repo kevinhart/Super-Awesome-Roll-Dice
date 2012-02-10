@@ -31,52 +31,90 @@ function loginResult( result ) {
 		alert( result[ "t" ] );
 	} else {
 		alert( result[ "t" ] );
-		document.getElementById("login").style.visibility = 'hidden';
-		document.getElementById("password").style.visibility = 'hidden';
-		document.getElementById("loginText").style.visibility = 'hidden';
-		document.getElementById("passwordText").style.visibility = 'hidden';
-		document.getElementById("loginButton").style.visibility = 'hidden';
 		
 		userName = login;
 		
-		document.getElementById("viewButton").style.visibility = 'visible';
-		document.getElementById("createButton").style.visibility = 'visible';
 	}
 }
 
-function loadSheets(){
-	document.all.innerPage.src="viewSheets.html"; 
+function loadSheets( user ){
+	document.getElementById("rightSide").innerHTML = "<table id='sheetTable' class='sheetTable' ><tr><td><text class='label'>Character Name</text></td><td /><td /></tr></table>";
+
+	populateTable(user);
 }
 
-function populateTable(){
-	var arrayOfSheetNames = getSheetNames(userName);
+function populateTable(user){
+	var arrayOfSheetNames = getSheetNames(user);
 	
 	var table = document.getElementById("sheetTable");
 	
 	for(name in arrayOfSheetNames){
 		var row = table.insertRow(table.rows.length);
 		var cell = row.insertCell(0);
-		//cell.innerHTML = "<a href='http://129.21.141.16/"+arrayOfSheetNames[name]+"' >"+arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."))+"</a>";
-		cell.innerHTML = arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."));
+		cell.innerHTML = "<text class='view'>"+arrayOfSheetNames[name].slice(0, arrayOfSheetNames[name].indexOf("."))+"</text>";
 		cell = row.insertCell(1);
-		cell.innerHTML = "<a href='http://saskatoon.cs.rit.edu:4242/sardstest/"+arrayOfSheetNames[name]+"' >View</a>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(/*characterName, userName, 0*/)'>View</button>";
 		cell = row.insertCell(2);
-		cell.innerHTML = "<button onclick='editSheet'>Edit</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(/*characterName, userName, 1*/)'>Edit</button>";
 	}	
 }
 
 function getSheetNames(userName){
 	var names = "Torik.xml"//call the database
+	/*  Call ViewSheets
+		$.ajax( {
+		async: false,
+		data: { "path" : encodeURI( url ) },
+		url: proxy,
+		success: function( data, textStatus, jqxhr ) { loginResult( data ); },
+		error: function( jqhxr, status, errorThrown ) { alert( "An error occurred connecting to the login server." ); },
+		dataType: "json"
+	} );*/
 	var nameArray = names.split(",");
 	return nameArray;
 }
 
-function updateButtons(){
-	if( document.getElementById("innerPage").src.slice(document.getElementById("innerPage").src.lastIndexOf("."), document.getElementById("innerPage").src.length - 1) == "xml"){
-		document.getElementById("createButton").style.visibility = 'hidden';		
-		document.getElementById("editButton").style.visibility = 'visible';
-	}else{		
-		document.getElementById("editButton").style.visibility = 'hidden';
+
+function viewSheet(cName, user, mode){
+	if(mode == 0){
+		//view
+		if (window.XMLHttpRequest){
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else{
+			// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.open("GET","/"+user+"/"+cName+".xml",false);
+		xmlhttp.send();
+		xmlDoc=xmlhttp.responseXML; 
+		//xslt transformation
+		document.getElementById("rightSide").innerHTML = "lol";//transformed xml
+	}else{
+		//edit
+		/*
+		if (window.XMLHttpRequest){
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else{
+			// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		if(cName == ""){
+			xmlhttp.open("GET","template.xml",false);
+		}else{
+			xmlhttp.open("GET",user+"/"+cName+".xml",false);
+		}
+		xmlhttp.send();
+		xmlDoc=xmlhttp.responseXML; 
+		*/
+		//xslt transformation
+		document.getElementById("rightSide").innerHTML = "<p>lol</p>";//transformed xml
 	}
-	
+}
+
+function saveSheet(user, password, xmldoc){
+	//call saveSheet at service
 }
