@@ -240,7 +240,7 @@ public class SARDS implements Provider< Source > {
       /**
        * Given a username and character name returns the characters xml document
        */
-	public Document viewSheets( String username, String characterName){
+	public Document viewSheet( String username, String characterName){
 	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	Document doc = null;
     	try {

@@ -375,18 +375,22 @@
 				<th>Dex Penalty</th>
 				<th>Min Str</th>
 				<th>AC Bonus</th>
-				<tr>
-					<td class="name"><xsl:value-of select="character/inventory/armour/name"/></td>
-					<td><xsl:value-of select="character/inventory/armour/dexPenalty"/></td>
-					<td><xsl:value-of select="character/inventory/armour/minStr"/></td>
-					<td><xsl:value-of select="character/inventory/armour/acBonus"/></td>
-				</tr>
-				<tr>
-					<td class="name"><xsl:value-of select="character/inventory/shield/name"/></td>
-					<td><xsl:value-of select="character/inventory/shield/dexPenalty"/></td>
-					<td><xsl:value-of select="character/inventory/shield/minStr"/></td>
-					<td><xsl:value-of select="character/inventory/shield/acBonus"/></td>
-				</tr>
+				<xsl:for-each select="character/inventory/armour">
+					<tr>
+						<td class="name"><xsl:value-of select="character/inventory/armour/name"/></td>
+						<td>0</td>
+						<td><xsl:value-of select="character/inventory/armour/minStr"/></td>
+						<td><xsl:value-of select="character/inventory/armour/acBonus"/></td>
+					</tr>
+				</xsl:for-each>
+				<xsl:for-each select="character/inventory/shield">
+					<tr>
+						<td class="name"><xsl:value-of select="character/inventory/shield/name"/></td>
+						<td><xsl:value-of select="character/inventory/shield/dexPenalty"/></td>
+						<td>0</td>
+						<td><xsl:value-of select="character/inventory/shield/acBonus"/></td>
+					</tr>
+				</xsl:for-each>
 			</table>
 			<table class="weapons">
 				<th class="name">Items</th>
