@@ -17,11 +17,19 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 @WebServiceProvider
@@ -33,8 +41,15 @@ public class SARDS implements Provider< Source > {
 
     private HashMap< String, String > validUsers;
     
+    private final String DB_DIR_NAME = "CHARACTERDB";   
+    
     public SARDS() {
     	validUsers = new HashMap< String, String >();
+    	
+    	// ensure character db directory exists
+    	File charDir = new File( DB_DIR_NAME );
+		if ( !charDir.exists() ) charDir.mkdir();
+    	
     	parseLoginCredentials();
     }
     
@@ -57,7 +72,7 @@ public class SARDS implements Provider< Source > {
     }
     
     private Source createSource( String str ) {
-        StringTokenizer st = new StringTokenizer( str, "=&/" );
+        StringTokenizer st = new StringTokenizer( str, "=&" );
         st.nextToken();
         String action = st.nextToken();
         HashMap< String, String > args = new HashMap< String, String >();
@@ -70,7 +85,11 @@ public class SARDS implements Provider< Source > {
         String body = "";
         if ( action.equals( "login" ) ) {
         	body = Login( args );
-        } else {        
+        } else if ( action.equals( "createNew" ) ) {
+        	body = CreateNew();
+        } else if ( action.equals( "saveSheet" ) ) {
+        	body = SaveSheet( args );
+        } else {
         	body = null;
         }
         
@@ -86,7 +105,7 @@ public class SARDS implements Provider< Source > {
     
     private String Login( HashMap< String, String > args ) {
     	if ( !( args.containsKey( "username" ) && args.containsKey( "password" ) ) ){
-    		return "{\"r\":-1,\"t\":\"[Login] Username and/or password not specified.\"}";
+    		return "{\"r\":1,\"t\":\"[Login] Username and/or password not specified.\"}";
     	}
     	
     	String user = args.get( "username" );
@@ -95,8 +114,67 @@ public class SARDS implements Provider< Source > {
     	if ( validUsers.containsKey( user ) && validUsers.get( user ).equals( pass ) ) {
     		return "{\"r\":0,\"t\":\"[Login] Successful.\"}";
     	} else {
-    		return "{\"r\":1,\"t\":\"[Login] Invalid username or password.\"}";
+    		return "{\"r\":2,\"t\":\"[Login] Invalid username or password.\"}";
     	}
+    }
+    
+    private String SaveSheet( HashMap< String, String > args ) {
+    	if ( !( args.containsKey( "username" ) &&
+    			args.containsKey( "password" ) &&
+    			args.containsKey( "xml" ) &&
+    			args.containsKey( "cName" ) ) ) {
+    		return "{\"r\":3,\"t\":\"[SaveSheet] Insufficient arguments.\"}";
+    	}
+    	
+    	String user = args.get( "username" );
+    	String pass = args.get( "password" );
+		String xml = args.get( "xml" );
+    	String cName = args.get( "cName" );
+    	
+    	// ensure character db directory exists
+    	File charDir = new File( DB_DIR_NAME );
+		if ( !charDir.exists() ) charDir.mkdir();
+    	
+    	if ( validUsers.containsKey( user ) && validUsers.get( user ).equals( pass ) ) {
+    		File userDir = new File( DB_DIR_NAME + "/" + user );
+    		if ( !userDir.exists() ) userDir.mkdir();
+    		String outLoc = DB_DIR_NAME + "/" + user + "/" + cName + ".xml";
+    		BufferedWriter fout = null;
+    		
+    		try {
+				fout = new BufferedWriter( new FileWriter( outLoc, false ) );
+				fout.write( xml );
+				fout.close();
+			} catch ( IOException e ) {
+				e.printStackTrace();
+				return "{\"r\":2,\"t\":\"[SaveSheet] Error while writing to output file.\",\"d\":\"" + e.toString() + "\"}";
+			}
+			
+			return "{\"r\":0,\"t\":\"[SaveSheet] Success.\"}";
+    	}
+    	
+    	return "{\"r\":1,\"t\":\"[SaveSheet] Invalid password for user \\\"" + user + "\\\".\"}";
+    }
+    
+    private String CreateNew() {
+    	Scanner fin = null;
+    	try {
+			 fin = new Scanner( new FileInputStream( "template.xml" ) );
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return "{\"r\":1,\"t\":\"[CreateNew] Template file (template.xml) could not be found.\"}";
+		}
+		
+		StringBuilder fileContents = new StringBuilder();
+		try {
+			while ( fin.hasNextLine() ) {
+				fileContents.append( fin.nextLine() );
+			}
+		} finally {
+			fin.close();
+		}
+		
+		return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + fileContents.toString() + "\"}";
     }
     
     private void parseLoginCredentials() {
