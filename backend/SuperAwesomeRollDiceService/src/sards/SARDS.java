@@ -196,6 +196,60 @@ public class SARDS implements Provider< Source > {
     	}
     }
     
+    
+    
+    /**
+     *  returns a hashmap of users and their given characters
+     * 
+     * 
+     * Example usage
+     * 	HashMap<String,String[]> myMap = myTmp.viewSheets();
+		Iterator iter = myMap.keySet().iterator();
+		while(iter.hasNext()){
+		String user = (String)iter.next();
+		String[] theCharacters = myMap.get(user);
+     */
+    	public HashMap<String,String[]> viewSheets(){
+		HashMap<String,String[]> tmp = new HashMap<String,String[]>();
+		File dir = new File(DB_DIR_NAME);
+		String[] userNames = dir.list();
+		//for every username
+		// get a list of characters 
+		for(int i=0; i<userNames.length; i++){
+			String[] characters = viewSheets(userNames[i]);
+			tmp.put(userNames[i],characters);
+		}
+		return tmp;
+	}
+	
+      /**
+       * given a username return a string array of characters
+       */
+	
+	public String[] viewSheets( String username){
+		File dir = new File( DB_DIR_NAME + "/" + username);
+		String[] characters = dir.list();
+		for( int i=0; i<characters.length; i++){
+			characters[i] = characters[i].substring(0, characters[i].length()-4);
+		}
+		return characters;
+	}
+	
+      /**
+       * Given a username and character name returns the characters xml document
+       */
+	public Document viewSheets( String username, String characterName){
+	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	Document doc = null;
+    	try {
+    		DocumentBuilder builder = factory.newDocumentBuilder();
+    		doc = builder.parse( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml");
+    	} catch ( Exception e ) {
+    		// pass
+    	}
+		return doc;
+	}
+     
     public static String SHA1( String msg ) {
     	MessageDigest md = null;
     	
