@@ -174,7 +174,9 @@ public class SARDS implements Provider< Source > {
 			fin.close();
 		}
 		
-		return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + fileContents.toString() + "\"}";
+		String fileText = fileContents.toString();
+		fileText = fileText.replace( "<", "&lt;" ).replace( ">", "&gt;" );
+		return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + fileText + "\"}";
     }
     
     private void parseLoginCredentials() {
