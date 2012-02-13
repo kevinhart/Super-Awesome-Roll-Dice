@@ -1,6 +1,6 @@
 /**
  * @author John Deer
- * @contributor Kevin Hart
+ * @contributor Kevin Hart is gay
  */
  
  var userName = "";
@@ -74,47 +74,61 @@ function getSheetNames(userName){
 	return nameArray;
 }
 
-
-function viewSheet(cName, user, mode){
-	if(mode == 0){
-		//view
-		if (window.XMLHttpRequest){
-			// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else{
-			// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("GET","/"+user+"/"+cName+".xml",false);
-		xmlhttp.send();
-		xmlDoc=xmlhttp.responseXML; 
-		//xslt transformation
-		document.getElementById("rightSide").innerHTML = "lol";//transformed xml
+function viewSheetCallback( data ){
+	if(data['r'] == 0){
+		document.getElementById("rightSide").innerHTML = data['d'];
 	}else{
-		//edit
-		/*
-		if (window.XMLHttpRequest){
-			// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else{
-			// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		if(cName == ""){
-			xmlhttp.open("GET","template.xml",false);
-		}else{
-			xmlhttp.open("GET",user+"/"+cName+".xml",false);
-		}
-		xmlhttp.send();
-		xmlDoc=xmlhttp.responseXML; 
-		*/
-		//xslt transformation
-		document.getElementById("rightSide").innerHTML = "<p>lol</p>";//transformed xml
+		alert(data['t']);
 	}
 }
 
-function saveSheet(user, password, xmldoc){
-	//call saveSheet at service
+function viewSheetError( ){
+	alert("Couldn't connect to server! Oh Noes!");
 }
+
+function viewSheet(cName, user, mode){
+	if(mode == 0){
+		var url = wsAddress + "?action=viewSheet";
+		$.ajax( {
+			async: false,
+			data: { "path" : encodeURI( url ) },
+			url: proxy,
+			success: function( data, textStatus, jqxhr ) { viewSheetCallback( data ); },
+			error: function( jqhxr, status, errorThrown ) { viewSheetError() },
+			dataType: "json"
+		} );
+	}else if(mode == 1){//create new
+		var url = wsAddress + "?action=createNew";
+		$.ajax( {
+			async: false,
+			data: { "path" : encodeURI( url ) },
+			url: proxy,
+			success: function( data, textStatus, jqxhr ) { viewSheetCallback( data ); },
+			error: function( jqhxr, status, errorThrown ) { viewSheetError() },
+			dataType: "json"
+		} );
+	}else if(mode == 2){//edit sheet
+	
+	}
+}
+
+function saveSheetSuccess( data ){
+	if(data['r'] == 0){
+		alert("Your character has been saved successfully!");
+	}else{
+		alert(data['t']);
+	}
+}
+
+function saveSheet(user, password, xmldoc, cName){
+	var url = wsAddress + "?action=saveSheet&username="+BLAH+"&password="+BLAH+"&cName="+BLAH+"&xml="+escape( xmlString );
+	$.ajax( {
+		async: false,
+		data: { "path" : encodeURI( url ) },
+		url: proxy,
+		success: function( data, textStatus, jqxhr ) { saveSheetSuccess(data) },
+		error: function( jqhxr, status, errorThrown ) { /*Update user with failure*/ },
+		dataType: "json"
+	} );
+}
+
