@@ -46,6 +46,10 @@ public class SARDS implements Provider< Source > {
     public SARDS() {
     	validUsers = new HashMap< String, String >();
     	
+    	// ensure character db directory exists
+    	File charDir = new File( DB_DIR_NAME );
+		if ( !charDir.exists() ) charDir.mkdir();
+    	
     	parseLoginCredentials();
     }
     
