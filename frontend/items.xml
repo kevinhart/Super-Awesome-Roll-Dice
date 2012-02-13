@@ -1,0 +1,208 @@
+<allArmour>
+	<armour>
+		<name>Chain Mail</name>
+		<minStr>12</minStr>
+		<acBonus>5</acBonus>
+	</armour>
+	<armour>
+		<name>Padded</name>
+		<minStr>-</minStr>
+		<acBonus>1</acBonus>
+	</armour>
+		<name>Leather</name>
+		<minStr>6</minStr>
+		<acBonus>2</acBonus>
+	</armour>
+		<name>Studded Leather</name>
+		<minStr>8</minStr>
+		<acBonus>3</acBonus>
+	</armour>
+		<name>Scale Mail</name>
+		<minStr>10</minStr>
+		<acBonus>4</acBonus>
+	</armour>
+		<name>Splint Mail</name>
+		<minStr>12</minStr>
+		<acBonus>5</acBonus>
+	</armour>
+		<name>Banded</name>
+		<minStr>14</minStr>
+		<acBonus>6</acBonus>
+	</armour>
+		<name>Half Plate</name>
+		<minStr>14</minStr>
+		<acBonus>7</acBonus>
+	</armour>
+		<name>Full Plate</name>
+		<minStr>15</minStr>
+		<acBonus>8</acBonus>
+	</armour>
+</allArmour>
+<allShields>
+	<shield>
+		<name>Large</name>
+		<dexPenalty>-2</dexPenalty>
+		<acBonus>2</acBonus>
+	</shield>
+	<shield>
+		<name>Small Steel</name>
+		<dexPenalty>-1</dexPenalty>
+		<acBonus>+1</acBonus>
+	</shield>
+	<shield>
+		<name>Small Wooden</name>
+		<dexPenalty>-2</dexPenalty>
+		<acBonus>+1</acBonus>
+	</shield>
+	<shield>
+		<name>Tower</name>
+		<dexPenalty>-3</dexPenalty>
+		<acBonus>+3</acBonus>
+	</shield>
+</allShields>
+<allWeapons>
+	<weapon twohanded="no">
+		<name>Battle Axe</name>
+		<stat>Str</stat>
+		<damage>heavy</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Dagger</name>
+		<stat>Str</stat>
+		<damage>light</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Thrown Dagger</name>
+		<stat>Dex</stat>
+		<damage>light</damage>
+		<range>5</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Long Bow</name>
+		<stat>Dex</stat>
+		<damage>heavy</damage>
+		<range>100</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Short Bow</name>
+		<stat>Dex</stat>
+		<damage>light</damage>
+		<range>60</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Club</name>
+		<stat>Str</stat>
+		<damage>light</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Light Hammer</name>
+		<stat>Str</stat>
+		<damage>light</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Thrown Light Hammer</name>
+		<stat>Dex</stat>
+		<damage>light</damage>
+		<range>20</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Short Sword</name>
+		<stat>Str</stat>
+		<damage>light</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Spear</name>
+		<stat>Str</stat>
+		<damage>light</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Thrown Spear</name>
+		<stat>Dex</stat>
+		<damage>light</damage>
+		<range>20</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Light Crossbow</name>
+		<stat>Dex</stat>
+		<damage>light</damage>
+		<range>80</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Long Sword</name>
+		<stat>Str</stat>
+		<damage>heavy</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="no">
+		<name>Flail</name>
+		<stat>Str</stat>
+		<damage>heavy</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>War Axe</name>
+		<stat>Str</stat>
+		<damage>heavy</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Two-handed Sword</name>
+		<stat>Str</stat>
+		<damage>heavy</damage>
+		<range>-</range>
+	</weapon>
+	<weapon twohanded="yes">
+		<name>Heavy Crossbow</name>
+		<stat>Dex</stat>
+		<damage>heavy</damage>
+		<range>120</range>
+	</weapon>
+</allWeapons>
+<allItems>
+	<item>
+		<name>Torch</name>
+		<descrip>Provides light for 2 hours</descrip>
+	</item>
+	<item>
+		<name>Waterskin</name>
+		<descrip>Holds enough water for 1 day</descrip>
+	</item>
+	<item>
+		<name>Crowbar</name>
+		<descrip>Gives the hero a +2 bonus to disarming traps and prying open doors</descrip>
+	</item>
+	<item>
+		<name>Holy Symbol</name>
+		<descrip>Allows the hero to channel his god's power</descrip>
+	</item>
+	<item>
+		<name>Rations</name>
+		<descrip>Dried meat, fruit and cheese</descrip>
+	</item>
+	<item>
+		<name>McGuffin</name>
+		<descrip>Allows hero to bypass one plot hook</descrip>
+	</item>
+	<item>
+		<name>Chalk</name>
+		<descrip>Stick of chalk for marking</descrip>
+	</item>
+	<item>
+		<name>Pitons</name>
+		<descrip>Useful for climbing or jamming open doors</descrip>
+	</item>
+	<item>
+		<name>Hammer</name>
+		<descrip>Useful for hitting non-enemy objects</descrip>
+	</item>
+	<item>
+		<name>Disguise Kit</name>
+		<descrip>Gives the hero +2 to +10 on subterfuge checks to disguise self</descrip>
+	</item>
+</allItems>
