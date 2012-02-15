@@ -89,6 +89,14 @@ public class SARDS implements Provider< Source > {
         	body = CreateNew();
         } else if ( action.equals( "saveSheet" ) ) {
         	body = SaveSheet( args );
+        } else if ( action.equals( "viewSheets" ) ) {
+        	if (args.contains( "username" ) && args.contains( "cName" ) ){	
+        	 	body = viewSheets( args.get( "username" ), args.get( "cName" ) );			
+        	} else if ( args.contains("username) ){
+        		body = viewSheets( args.get( "username" );
+        	}else{
+        		body = viewSheets();	
+        	}
         } else {
         	body = null;
         }
@@ -200,58 +208,61 @@ public class SARDS implements Provider< Source > {
     
     
     
+    
     /**
-     *  returns a hashmap of users and their given characters
-     * 
-     * 
-     * Example usage
-     * 	HashMap<String,String[]> myMap = myTmp.viewSheets();
-		Iterator iter = myMap.keySet().iterator();
-		while(iter.hasNext()){
-		String user = (String)iter.next();
-		String[] theCharacters = myMap.get(user);
+     * viewSheets Methods
      */
-    	public HashMap<String,String[]> viewSheets(){
-		HashMap<String,String[]> tmp = new HashMap<String,String[]>();
+ 	public String viewSheets(){
 		File dir = new File(DB_DIR_NAME);
 		String[] userNames = dir.list();
 		//for every username
 		// get a list of characters 
+		StringBuilder sheet = new StringBuilder();
+		sheet.append("[");
 		for(int i=0; i<userNames.length; i++){
-			String[] characters = viewSheets(userNames[i]);
-			tmp.put(userNames[i],characters);
+			StringBuilder tmp = new StringBuilder();
+			File dir2 = new File( DB_DIR_NAME + "/" + userNames[i]);
+			String[] characters = dir2.list();
+			tmp.append("[");
+			for( int j=0; j<characters.length; j++){
+				tmp.append("\"" + characters[j].substring(0, characters[j].length()-4) + "\"");
+				if( j != characters.length-1){
+				tmp.append(", ");
+				}
+			}
+			tmp.append("]");
+			String theSheet = tmp.toString();
+			sheet.append("\""+userNames[i]+"\": " + theSheet);
+			if(i!=userNames.length-1){
+			sheet.append(", ");
+			}
 		}
-		return tmp;
+		sheet.append("]");
+		String result = sheet.toString();
+		return "{\"r\":0,\"t\":\"[viewSheets] Success \\\"" + result + "\\\".\"}";
+		
 	}
 	
-      /**
-       * given a username return a string array of characters
-       */
-	
-	public String[] viewSheets( String username){
+	public String viewSheets( String username){
+		StringBuilder sheet = new StringBuilder();
 		File dir = new File( DB_DIR_NAME + "/" + username);
 		String[] characters = dir.list();
+		sheet.append("[");
 		for( int i=0; i<characters.length; i++){
-			characters[i] = characters[i].substring(0, characters[i].length()-4);
+			sheet.append("\"" + characters[i].substring(0, characters[i].length()-4) + "\"");
+			if( i != characters.length-1)
+			sheet.append(", ");
 		}
-		return characters;
+		sheet.append("]");
+		String theSheet = sheet.toString();
+		return "{\"r\":0,\"t\":\"[viewSheets] Success \\\"" + theSheet + "\\\".\"}";
 	}
 	
-      /**
-       * Given a username and character name returns the characters xml document
-       */
-	public Document viewSheet( String username, String characterName){
-	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	Document doc = null;
-    	try {
-    		DocumentBuilder builder = factory.newDocumentBuilder();
-    		doc = builder.parse( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml");
-    	} catch ( Exception e ) {
-    		// pass
-    	}
-		return doc;
-	}
-     
+	/**
+	 * End viewShets
+	 */
+ 
+ 
     public static String SHA1( String msg ) {
     	MessageDigest md = null;
     	
