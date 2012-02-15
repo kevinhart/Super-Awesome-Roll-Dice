@@ -92,7 +92,7 @@ public class SARDS implements Provider< Source > {
         } else if ( action.equals( "viewSheets" ) ) {
         	if (args.contains( "username" ) && args.contains( "cName" ) ){	
         	 	body = viewSheets( args.get( "username" ), args.get( "cName" ) );			
-        	} else if ( args.contains("username) ){
+        	} else if ( args.contains("username") ){
         		body = viewSheets( args.get( "username" );
         	}else{
         		body = viewSheets();	
