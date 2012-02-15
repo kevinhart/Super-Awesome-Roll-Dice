@@ -239,7 +239,7 @@ public class SARDS implements Provider< Source > {
 		}
 		sheet.append("]");
 		String result = sheet.toString();
-		return "{\"r\":0,\"t\":\"[viewSheets] Success \\\"" + result + "\\\".\"}";
+		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + result + "\"}";
 		
 	}
 	
@@ -255,7 +255,28 @@ public class SARDS implements Provider< Source > {
 		}
 		sheet.append("]");
 		String theSheet = sheet.toString();
-		return "{\"r\":0,\"t\":\"[viewSheets] Success \\\"" + theSheet + "\\\".\"}";
+		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + theSheet + "\"}"; 
+	}
+	
+		
+	public String viewSheets( String username, String characterName){
+	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	Document doc = null;
+	String theResult = null;
+    	try {
+    		DocumentBuilder builder = factory.newDocumentBuilder();
+    		doc = builder.parse( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml");
+			DOMSource domSource = new DOMSource(doc);
+			StringWriter writer = new StringWriter();
+			StreamResult result = new StreamResult(writer);
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer transformer = tf.newTransformer();
+			transformer.transform(domSource, result);
+			theResult = writer.toString();
+    	} catch ( Exception e ) {
+    		// pass
+    	}
+		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + theResult + "\"}"; 
 	}
 	
 	/**
