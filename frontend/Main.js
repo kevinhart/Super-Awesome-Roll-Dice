@@ -145,56 +145,10 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		var txt = data['d'];
-		if (window.DOMParser)
-		  {
-		  parser=new DOMParser();
-		  xmlDoc=parser.parseFromString(txt,"text/xml");
-		  }
-		else // Internet Explorer
-		  {
-		  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-		  xmlDoc.async=false;
-		  xmlDoc.loadXML(txt); 
-		  }
-		  displayResult(xmlDoc);
+		document.getElementById["rightSide"].innerHtml = data['d'];
 	}else{
 		alert(data['t']);
 	}
-}
-
-function loadXMLDoc(dname)
-{
-if (window.XMLHttpRequest)
-  {
-  xhttp=new XMLHttpRequest();
-  }
-else
-  {
-  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xhttp.open("GET",dname,false);
-xhttp.send("");
-return xhttp.responseXML;
-}
-
-function displayResult(xml)
-{
-	xsl=loadXMLDoc("sampleCharacterSheetEdit.xsl");
-	// code for IE
-	if (window.ActiveXObject)
-	  {
-	  ex=xml.transformNode(xsl);
-	  document.getElementById("rightSide").innerHTML=ex;
-	  }
-	// code for Mozilla, Firefox, Opera, etc.
-	else if (document.implementation && document.implementation.createDocument)
-	  {
-	  xsltProcessor=new XSLTProcessor();
-	  xsltProcessor.importStylesheet(xsl);
-	  resultDocument = xsltProcessor.transformToFragment(xml,document);
-	  document.getElementById("rightSide").appendChild(resultDocument);
-	  }
 }
 
 /*
@@ -203,7 +157,6 @@ function displayResult(xml)
 function viewSheetCallbackEdit( data, cName, user ){
 		if(data['r'] == 0){
 			var sheet = data['d'];
-			sheet.replace("sampleCharacterSheetRender-Table.xsl", "sampleCharacterSheetEdit.xsl");
 			document.getElementById("rightSide").innerHTML = sheet;
 		}else{
 			alert(data['t']);
