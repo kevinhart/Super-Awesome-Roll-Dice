@@ -17,7 +17,7 @@
 				<td>
 					<input class="edit" id="inName">
 						<xsl:attribute name="value" namespace="uri">
-							<xsl:value-of select="/character/name"/>
+							<xsl:value-of select="character/name"/>
 						</xsl:attribute>
 					</input>
 				</td>

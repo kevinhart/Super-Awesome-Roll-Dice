@@ -65,16 +65,16 @@ function populateTableMultiUsers( data ){
 	var table = document.getElementById("sheetTable");
 	
 	for(name in users){
-		for(var i = 0; i < users[user].length;i++){
+		for(var i = 0; i < users[name].length;i++){
 			var row = table.insertRow(table.rows.length);
 			var cell = row.insertCell(0);
-			cell.innerHTML = "<text class='view'>"+users[user][i]+"</text>";
+			cell.innerHTML = "<text class='view'>"+users[name][i]+"</text>";
 			cell = row.insertCell(1);
 			cell.innerHTML = "<text class='view'>"+name+"</text>";
 			cell = row.insertCell(2);
-			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+users[user][i]+"\', \'"+name+"\', 0)'>View</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet(\""+users[name][i]+"\", \""+name+"\", 0)'>View</button>";
 			cell = row.insertCell(3);
-			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+users[user][i]+"\', \'"+name+"\', 2)'>Edit</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet(\""+users[name][i]+"\", \""+name+"\", 2)'>Edit</button>";
 		}
 	}	
 
@@ -102,9 +102,9 @@ function populateTableOneUser( data, user ){
 		cell = row.insertCell(1);
 		cell.innerHTML = "<text class='view'>"+user+"</text>";
 		cell = row.insertCell(2);
-		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+names[i]+"\', \'"+user+"\', 0)'>View</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(\""+names[i]+"\", \""+user+"\", 0)'>View</button>";
 		cell = row.insertCell(3);
-		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+names[i]+"\', \'"+user+"\', 2)'>Edit</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(\""+names[i]+"\", \""+user+"\", 2)'>Edit</button>";
 	}
 		
 
@@ -164,7 +164,7 @@ function serviceCallError( ){
 */
 function viewSheet(cName, user, mode){
 	if(mode == 0){//view
-		var url = wsAddress + "?action=viewSheet&username="+user+"&characterName="+cName;
+		var url = wsAddress + "?action=viewSheets&username="+user+"&cName="+cName;
 		$.ajax( {
 			async: false,
 			data: { "path" : encodeURI( url ) },
@@ -184,7 +184,7 @@ function viewSheet(cName, user, mode){
 			dataType: "json"
 		} );
 	}else if(mode == 2){//edit sheet
-		var url = wsAddress + "?action=viewSheet&username="+user+"&characterName="+cName+"&forEdit=yes";
+		var url = wsAddress + "?action=viewSheets&username="+user+"&cName="+cName+"&forEdit=yes";
 		$.ajax( {
 			async: false,
 			data: { "path" : encodeURI( url ) },
