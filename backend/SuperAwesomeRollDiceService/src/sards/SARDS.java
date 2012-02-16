@@ -77,6 +77,9 @@ public class SARDS implements Provider< Source > {
     }
     
     private Source createSource( String str ) {
+    	
+    	indexCharacters(); // too often?
+    	
         StringTokenizer st = new StringTokenizer( str, "=&" );
         st.nextToken();
         String action = st.nextToken();
@@ -120,6 +123,57 @@ public class SARDS implements Provider< Source > {
         
         Source source = new StreamSource( new ByteArrayInputStream( body.getBytes() ) );
         return source;
+    }
+    
+    private void indexCharacters() {    	
+    	StringBuilder index = new StringBuilder();
+		index.append( "<database>" );
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		String[] indexableTags = { "strength", "dexterity", "mind", "charisma", "physical", "subterfuge", "knowledge", "communication", "survival", "fabrication" };
+		
+    	File dir = new File( DB_DIR_NAME );
+		String[] userNames = dir.list();		
+		for( int i = 0; i < userNames.length; i++ ) {
+			index.append( "<user name=\"" + userNames[ i ] + "\">" );
+			File dir2 = new File( DB_DIR_NAME + "/" + userNames[ i ] );
+			String[] characters = dir2.list();
+			for ( int j = 0; j < characters.length; j++ ) {
+				
+		    	try {
+		    		StringBuilder character = new StringBuilder();
+		    		character.append( "<character name=\"" + characters[ j ].replace( ".xml", "" ) + "\">" );
+		    		DocumentBuilder builder = factory.newDocumentBuilder();
+		    		Document doc = builder.parse( DB_DIR_NAME + "/" + userNames[ i ] + "/" + characters[ j ] );
+		    		
+		    		for ( int n = 0; n < indexableTags.length; n++ ) {
+		    			String tName = indexableTags[ n ];
+		    			NodeList tags = doc.getElementsByTagName( tName );
+		    			if ( tags.getLength() > 0 ) {
+		    				character.append( "<" + tName + ">" );
+		    				character.append( tags.item( 0 ).getTextContent() );
+		    				character.append( "</" + tName + ">" );
+		    			}
+		    		}
+		    		
+		    		character.append( "</character>" );
+		    		index.append( character.toString() );
+		    	} catch ( Exception e ) {
+		    		// pass
+		    	}
+			}
+			index.append( "</user>" );
+		}
+		
+		index.append( "</database>" );
+		
+		try {
+			BufferedWriter fout = new BufferedWriter( new FileWriter( "database.xml", false ) );
+			fout.write( index.toString() );
+			fout.close();
+		} catch ( Exception e ) {
+			// pass
+		}
     }
     
     private String toSafeXml( String rawXml ) {
