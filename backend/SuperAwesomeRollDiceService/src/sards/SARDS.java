@@ -115,6 +115,15 @@ public class SARDS implements Provider< Source > {
         return source;
     }
     
+    private String toSafeXml( String rawXml ) {
+    	if ( rawXml == null ) return rawXml;
+    	return rawXml.replace( "<", "&lt;" )
+    	             .replace( ">", "&gt;" )
+    	             .replace( "\"", "\\\"" )
+    	             .replace( "\'", "\\\'" )
+    	             .replace( "\t", "" );
+    }
+    
     private String Login( HashMap< String, String > args ) {
     	if ( !( args.containsKey( "username" ) && args.containsKey( "password" ) ) ){
     		return "{\"r\":1,\"t\":\"[Login] Username and/or password not specified.\"}";
@@ -187,8 +196,7 @@ public class SARDS implements Provider< Source > {
 		}
 		
 		String fileText = fileContents.toString();
-		fileText = fileText.replace( "<", "&lt;" ).replace( ">", "&gt;" );
-		return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + fileText + "\"}";
+		return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + toSafeXml( fileText ) + "\"}";
     }
     
     private void parseLoginCredentials() {
