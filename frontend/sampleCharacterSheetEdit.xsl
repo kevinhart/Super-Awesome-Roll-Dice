@@ -3,24 +3,6 @@
 
  <xsl:output encoding="ISO-8859-1" />
 <xsl:template match="/">
-<html>
-	<head>
-		<title>SuperAwesomeRollDice</title>
-		<style type="text/css">
-	#content 
-	{
-		text-align: center;
-		margin: 0 auto;
-		width:660px;
-		padding-bottom:10px;
-	}
-	div
-	{
-		text-align: left;
-		padding-left:35%;
-	}
-		</style>
-	</head>
 	<body>
 
 		<table id="content">

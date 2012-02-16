@@ -145,7 +145,7 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		document.getElementById["rightSide"].innerHtml = data['d'];
+		document.getElementById("rightSide").innerHTML = data['d'];
 	}else{
 		alert(data['t']);
 	}
