@@ -45,7 +45,7 @@ function loadSheets( user ){
 	if(user == ""){
 		getSheetNames();	
 	}else{
-		getSheetNames(user);
+		getSheetNamesUser(user);
 	}
 }
 
@@ -128,7 +128,7 @@ function getSheetNames(){
 /*
 **Call to service from View Sheets for All User button
 */
-function getSheetNames(user){
+function getSheetNamesUser(user){
 	var url = wsAddress + "?action=viewSheets&username="+user;
 	$.ajax( {
 		async: false,
