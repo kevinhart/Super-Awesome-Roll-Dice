@@ -1,1 +1,37 @@
-<characterTemplate>WIP</characterTemplate>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="sampleCharacterSheetEdit.xsl"?>
+<character>
+<name></name>
+<player></player>
+<age></age>
+<race></race>
+<class></class>
+<gender></gender>
+<level></level>
+<experience></experience>
+<attributes>
+	<strength></strength>
+	<dexterity></dexterity>
+	<mind></mind>
+	<charisma></charisma>
+</attributes>
+<hitpoints></hitpoints>
+<baseAttackBonus></baseAttackBonus>
+<baseDamageBonus></baseDamageBonus>
+<attacks></attacks>
+<skills>
+	<physical></physical>
+	<subterfuge></subterfuge>
+	<knowledge></knowledge>
+	<communication></communication>
+	<survival></survival>
+	<fabrication></fabrication>
+</skills>
+<inventory>
+	<money>
+		<gold></gold>
+		<silver></silver>
+		<copper></copper>
+	</money>
+</inventory>
+</character>
