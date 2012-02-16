@@ -3,6 +3,7 @@ package sards;
 import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -30,6 +31,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -115,6 +117,15 @@ public class SARDS implements Provider< Source > {
         return source;
     }
     
+    private String toSafeXml( String rawXml ) {
+    	if ( rawXml == null ) return rawXml;
+    	return rawXml.replace( "<", "&lt;" )
+    	             .replace( ">", "&gt;" )
+    	             .replace( "\"", "\\\"" )
+    	             .replace( "\'", "\\\'" )
+    	             .replace( "\t", "" );
+    }
+    
     private String Login( HashMap< String, String > args ) {
     	if ( !( args.containsKey( "username" ) && args.containsKey( "password" ) ) ){
     		return "{\"r\":1,\"t\":\"[Login] Username and/or password not specified.\"}";
@@ -187,8 +198,25 @@ public class SARDS implements Provider< Source > {
 		}
 		
 		String fileText = fileContents.toString();
-		fileText = fileText.replace( "<", "&lt;" ).replace( ">", "&gt;" );
-		return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + fileText + "\"}";
+		
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer trans = null;
+		
+		try {
+			trans = tf.newTransformer( new StreamSource( "sampleCharacterSheetEdit.xsl" ) );
+			trans.setOutputProperty( OutputKeys.METHOD, "xml" );
+			trans.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
+			StringWriter writer = new StringWriter();
+			StreamResult output = new StreamResult( writer );
+			trans.transform( new StreamSource( new ByteArrayInputStream( fileText.getBytes() ) ), output );
+			if ( output != null ) {
+				return writer.toString();
+			}
+		} catch ( Exception e ) {
+			e.printStackTrace();
+		}		
+		
+		return "{\"r\":4,\"t\":\"[CreateNew] Could not transform with XSLT.\"}";
     }
     
     private void parseLoginCredentials() {
