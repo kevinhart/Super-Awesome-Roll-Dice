@@ -145,7 +145,7 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		document.getElementById("rightSide").innerHTML = data['d'];
+		document.getElementById("rightSide").innerHTML = "<iframe height='100%' width='100%'>"+data['r']+"</iframe>";
 	}else{
 		alert(data['t']);
 	}
