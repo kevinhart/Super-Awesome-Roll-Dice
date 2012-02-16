@@ -4,6 +4,10 @@ import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.ws.BindingType;
 import javax.xml.ws.Provider;
@@ -24,8 +28,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -90,10 +94,10 @@ public class SARDS implements Provider< Source > {
         } else if ( action.equals( "saveSheet" ) ) {
         	body = SaveSheet( args );
         } else if ( action.equals( "viewSheets" ) ) {
-        	if (args.contains( "username" ) && args.contains( "cName" ) ){	
+        	if (args.containsKey( "username" ) && args.containsKey( "cName" ) ){	
         	 	body = viewSheets( args.get( "username" ), args.get( "cName" ) );			
-        	} else if ( args.contains("username") ){
-        		body = viewSheets( args.get( "username" );
+        	} else if ( args.containsKey("username") ){
+        		body = viewSheets( args.get( "username" ) );
         	}else{
         		body = viewSheets();	
         	}
