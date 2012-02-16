@@ -65,16 +65,16 @@ function populateTableMultiUsers( data ){
 	var table = document.getElementById("sheetTable");
 	
 	for(name in users){
-		for(character in name){
+		for(var i = 0; i < users[user].length;i++){
 			var row = table.insertRow(table.rows.length);
 			var cell = row.insertCell(0);
-			cell.innerHTML = "<text class='view'>"+character+"</text>";
+			cell.innerHTML = "<text class='view'>"+users[user][i]+"</text>";
 			cell = row.insertCell(1);
 			cell.innerHTML = "<text class='view'>"+name+"</text>";
 			cell = row.insertCell(2);
-			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+name+"\', 0)'>View</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+users[user][i]+"\', \'"+name+"\', 0)'>View</button>";
 			cell = row.insertCell(3);
-			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+name+"\', 2)'>Edit</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+users[user][i]+"\', \'"+name+"\', 2)'>Edit</button>";
 		}
 	}	
 
@@ -95,16 +95,16 @@ function populateTableOneUser( data, user ){
 	document.getElementById("rightSide").innerHTML = "<table id='sheetTable' class='sheetTable' ><tr><td><text class='label'>Character Name</text></td><td><text class='label'>User Name</text></td><td /><td /></tr></table>";
 	var table = document.getElementById("sheetTable");
 	
-	for(character in names){
+	for(var i = 0; i < names.length; i++){
 		var row = table.insertRow(table.rows.length);
 		var cell = row.insertCell(0);
-		cell.innerHTML = "<text class='view'>"+character+"</text>";
+		cell.innerHTML = "<text class='view'>"+names[i]+"</text>";
 		cell = row.insertCell(1);
 		cell.innerHTML = "<text class='view'>"+user+"</text>";
 		cell = row.insertCell(2);
-		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+user+"\', 0)'>View</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+names[i]+"\', \'"+user+"\', 0)'>View</button>";
 		cell = row.insertCell(3);
-		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+user+"\', 2)'>Edit</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+names[i]+"\', \'"+user+"\', 2)'>Edit</button>";
 	}
 		
 
