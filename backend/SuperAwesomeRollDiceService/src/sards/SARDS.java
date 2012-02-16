@@ -31,7 +31,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -96,8 +95,9 @@ public class SARDS implements Provider< Source > {
         } else if ( action.equals( "saveSheet" ) ) {
         	body = SaveSheet( args );
         } else if ( action.equals( "viewSheets" ) ) {
-        	if (args.containsKey( "username" ) && args.containsKey( "cName" ) ){	
-        	 	body = viewSheets( args.get( "username" ), args.get( "cName" ) );			
+        	if (args.containsKey( "username" ) && args.containsKey( "cName" ) ){
+        		boolean forEdit = args.containsKey( "forEdit" ) && args.get( "forEdit" ).equals( "yes" );
+        	 	body = viewSheets( args.get( "username" ), args.get( "cName" ), forEdit );			
         	} else if ( args.containsKey("username") ){
         		body = viewSheets( args.get( "username" ) );
         	}else{
@@ -292,24 +292,27 @@ public class SARDS implements Provider< Source > {
 	}
 	
 		
-	public String viewSheets( String username, String characterName){
+	public String viewSheets( String username, String characterName, boolean isEdit ){
 	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	Document doc = null;
 	String theResult = null;
-    	try {
+    	try {    		
     		DocumentBuilder builder = factory.newDocumentBuilder();
     		doc = builder.parse( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml");
 			DOMSource domSource = new DOMSource(doc);
 			StringWriter writer = new StringWriter();
 			StreamResult result = new StreamResult(writer);
 			TransformerFactory tf = TransformerFactory.newInstance();
-			Transformer transformer = tf.newTransformer();
+			StreamSource xslt = isEdit ? new StreamSource( "sampleCharacterSheetEdit.xsl" ) : new StreamSource( "sampleCharacterSheetRender.xsl" );
+			Transformer transformer = tf.newTransformer( xslt );
+			transformer.setOutputProperty( OutputKeys.METHOD, "xml" );
+			transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
 			transformer.transform(domSource, result);
 			theResult = writer.toString();
     	} catch ( Exception e ) {
     		// pass
     	}
-		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + theResult + "\"}"; 
+		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + toSafeXml( theResult ) + "\"}"; 
 	}
 	
 	/**
