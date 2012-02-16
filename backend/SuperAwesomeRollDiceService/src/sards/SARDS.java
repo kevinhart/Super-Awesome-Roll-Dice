@@ -123,7 +123,8 @@ public class SARDS implements Provider< Source > {
     	             .replace( ">", "&gt;" )
     	             .replace( "\"", "\\\"" )
     	             .replace( "\'", "\\\'" )
-    	             .replace( "\t", "" );
+    	             .replace( "\t", "" )
+    	             .replace( "\n", "" );
     }
     
     private String Login( HashMap< String, String > args ) {
@@ -210,7 +211,7 @@ public class SARDS implements Provider< Source > {
 			StreamResult output = new StreamResult( writer );
 			trans.transform( new StreamSource( new ByteArrayInputStream( fileText.getBytes() ) ), output );
 			if ( output != null ) {
-				return writer.toString();
+				return "{\"r\":0,\"t\":\"[CreateNew] Success.\",\"d\":\"" + toSafeXml( writer.toString() ) + "\"}";
 			}
 		} catch ( Exception e ) {
 			e.printStackTrace();
