@@ -56,3 +56,15 @@ table.sheetTable
 	border: 1px solid black;
 	border-collapse:collapse;
 }
+#content 
+{
+	text-align: center;
+	margin: 0 auto;
+	width:660px;
+	padding-bottom:10px;
+}
+div
+{
+	text-align: left;
+	padding-left:35%;
+}
