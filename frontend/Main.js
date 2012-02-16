@@ -72,9 +72,9 @@ function populateTableMultiUsers( data ){
 			cell = row.insertCell(1);
 			cell.innerHTML = "<text class='view'>"+name+"</text>";
 			cell = row.insertCell(2);
-			cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+name+"', 0)'>View</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+name+"\', 0)'>View</button>";
 			cell = row.insertCell(3);
-			cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+name+"', 2)'>Edit</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+name+"\', 2)'>Edit</button>";
 		}
 	}	
 
@@ -102,9 +102,9 @@ function populateTableOneUser( data, user ){
 		cell = row.insertCell(1);
 		cell.innerHTML = "<text class='view'>"+user+"</text>";
 		cell = row.insertCell(2);
-		cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+user+"', 0)'>View</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+user+"\', 0)'>View</button>";
 		cell = row.insertCell(3);
-		cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+user+"', 2)'>Edit</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet(\'"+character+"\', \'"+user+"\', 2)'>Edit</button>";
 	}
 		
 
