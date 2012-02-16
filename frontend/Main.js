@@ -145,16 +145,41 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		var stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(data['d']));
-		var document = new XPathDocument(stream);
-		var writer = new StringWriter();
-		var transform = new XslCompiledTransform();
-		transform.Load("sampleCharacterSheetEdit.xsl");
-		transform.Transform(document, null, writer);
-		document.getElementById("rightSide").innerHTML = writer.ToString();
+		var txt = data['d'];
+		if (window.DOMParser)
+		  {
+		  parser=new DOMParser();
+		  xmlDoc=parser.parseFromString(txt,"text/xml");
+		  }
+		else // Internet Explorer
+		  {
+		  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		  xmlDoc.async=false;
+		  xmlDoc.loadXML(txt); 
+		  }
+		  displayResult(xmlDoc);
 	}else{
 		alert(data['t']);
 	}
+}
+
+function displayResult(xml)
+{
+	xsl=loadXMLDoc("sampleCharacterSheetEdit.xsl");
+	// code for IE
+	if (window.ActiveXObject)
+	  {
+	  ex=xml.transformNode(xsl);
+	  document.getElementById("rightSide").innerHTML=ex;
+	  }
+	// code for Mozilla, Firefox, Opera, etc.
+	else if (document.implementation && document.implementation.createDocument)
+	  {
+	  xsltProcessor=new XSLTProcessor();
+	  xsltProcessor.importStylesheet(xsl);
+	  resultDocument = xsltProcessor.transformToFragment(xml,document);
+	  document.getElementById("rightSide").appendChild(resultDocument);
+	  }
 }
 
 /*
