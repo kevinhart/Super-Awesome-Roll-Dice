@@ -41,11 +41,11 @@ function loginResult( result ) {
 **only for that user
 */
 function loadSheets( user ){
-	document.getElementById("rightSide").innerHTML = "<table id='sheetTable' class='sheetTable' ><tr><td><text class='label'>Character Name</text></td><td><text class='label'>User Name</text></td><td /><td /></tr></table>";
+	
 	if(user == ""){
 		getSheetNames();	
 	}else{
-		getSheetNames(user);
+		getSheetNamesUser(user);
 	}
 }
 
@@ -61,7 +61,7 @@ function populateTableMultiUsers( data ){
 		alert(data['t']);
 		return;
 	}
-	
+	document.getElementById("rightSide").innerHTML = "<table id='sheetTable' class='sheetTable' ><tr><td><text class='label'>Character Name</text></td><td><text class='label'>User Name</text></td><td /><td /></tr></table>";
 	var table = document.getElementById("sheetTable");
 	
 	for(name in users){
@@ -72,9 +72,9 @@ function populateTableMultiUsers( data ){
 			cell = row.insertCell(1);
 			cell.innerHTML = "<text class='view'>"+name+"</text>";
 			cell = row.insertCell(2);
-			cell.innerHTML = "<button class='view' onclick='viewSheet("+character+", "+name+", 0)'>View</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+name+"', 0)'>View</button>";
 			cell = row.insertCell(3);
-			cell.innerHTML = "<button class='view' onclick='viewSheet("+character+", "+name+", 1)'>Edit</button>";
+			cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+name+"', 2)'>Edit</button>";
 		}
 	}	
 
@@ -92,7 +92,7 @@ function populateTableOneUser( data, user ){
 		alert(data['t']);
 		return;
 	}
-	
+	document.getElementById("rightSide").innerHTML = "<table id='sheetTable' class='sheetTable' ><tr><td><text class='label'>Character Name</text></td><td><text class='label'>User Name</text></td><td /><td /></tr></table>";
 	var table = document.getElementById("sheetTable");
 	
 	for(character in names){
@@ -102,9 +102,9 @@ function populateTableOneUser( data, user ){
 		cell = row.insertCell(1);
 		cell.innerHTML = "<text class='view'>"+user+"</text>";
 		cell = row.insertCell(2);
-		cell.innerHTML = "<button class='view' onclick='viewSheet("+character+", "+user+", 0)'>View</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+user+"', 0)'>View</button>";
 		cell = row.insertCell(3);
-		cell.innerHTML = "<button class='view' onclick='viewSheet("+character+", "+user+", 1)'>Edit</button>";
+		cell.innerHTML = "<button class='view' onclick='viewSheet('"+character+"', '"+user+"', 2)'>Edit</button>";
 	}
 		
 
@@ -128,7 +128,7 @@ function getSheetNames(){
 /*
 **Call to service from View Sheets for All User button
 */
-function getSheetNames(user){
+function getSheetNamesUser(user){
 	var url = wsAddress + "?action=viewSheets&username="+user;
 	$.ajax( {
 		async: false,
