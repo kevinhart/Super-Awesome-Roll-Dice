@@ -145,6 +145,7 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
+		var txt = data['d'];
 		if (window.DOMParser)
 		  {
 		  parser=new DOMParser();
