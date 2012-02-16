@@ -145,7 +145,13 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		document.getElementById("rightSide").innerHTML = "<iframe height='100%' width='100%'>"+data['r']+"</iframe>";
+		MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(data['d']));
+		XPathDocument document = new XPathDocument(stream);
+		StringWriter writer = new StringWriter();
+		XslCompiledTransform transform = new XslCompiledTransform();
+		transform.Load("sampleCharacterSheetEdit.xsl");
+		transform.Transform(document, null, writer);
+		document.getElementById("rightSide").innerHTML = writer.ToString();
 	}else{
 		alert(data['t']);
 	}
