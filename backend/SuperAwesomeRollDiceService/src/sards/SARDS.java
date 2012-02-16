@@ -95,13 +95,18 @@ public class SARDS implements Provider< Source > {
         } else if ( action.equals( "saveSheet" ) ) {
         	body = SaveSheet( args );
         } else if ( action.equals( "viewSheets" ) ) {
-        	if (args.containsKey( "username" ) && args.containsKey( "cName" ) ){
-        		boolean forEdit = args.containsKey( "forEdit" ) && args.get( "forEdit" ).equals( "yes" );
-        	 	body = viewSheets( args.get( "username" ), args.get( "cName" ), forEdit );			
-        	} else if ( args.containsKey("username") ){
-        		body = viewSheets( args.get( "username" ) );
-        	}else{
-        		body = viewSheets();	
+        	boolean usernameGiven = args.containsKey( "username" );
+        	boolean cNameGiven = args.containsKey( "cName" );
+        	boolean isForEdit = args.containsKey( "forEdit" ) && args.get( "forEdit" ).equals( "yes" );
+        	
+        	if ( !usernameGiven ) {
+        		body = viewSheets();
+        	} else {
+        		if ( cNameGiven ) {
+        			body = viewSheets( args.get( "username" ), args.get( "cName" ), isForEdit );
+        		} else {
+        			body = viewSheets( args.get( "username" ) );
+        		}
         	}
         } else {
         	body = null;
@@ -251,7 +256,7 @@ public class SARDS implements Provider< Source > {
 		//for every username
 		// get a list of characters 
 		StringBuilder sheet = new StringBuilder();
-		sheet.append("[");
+		sheet.append("{");
 		for(int i=0; i<userNames.length; i++){
 			StringBuilder tmp = new StringBuilder();
 			File dir2 = new File( DB_DIR_NAME + "/" + userNames[i]);
@@ -270,25 +275,29 @@ public class SARDS implements Provider< Source > {
 			sheet.append(", ");
 			}
 		}
-		sheet.append("]");
+		sheet.append("}");
 		String result = sheet.toString();
-		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + result + "\"}";
+		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":" + result + "}";
 		
 	}
 	
-	public String viewSheets( String username){
+	public String viewSheets( String username ){
 		StringBuilder sheet = new StringBuilder();
-		File dir = new File( DB_DIR_NAME + "/" + username);
-		String[] characters = dir.list();
-		sheet.append("[");
-		for( int i=0; i<characters.length; i++){
-			sheet.append("\"" + characters[i].substring(0, characters[i].length()-4) + "\"");
-			if( i != characters.length-1)
-			sheet.append(", ");
-		}
-		sheet.append("]");
-		String theSheet = sheet.toString();
-		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + theSheet + "\"}"; 
+		File dir = new File( DB_DIR_NAME + "/" + username );
+		if ( dir.exists() ) {
+			String[] characters = dir.list();
+			sheet.append("[");
+			for( int i=0; i<characters.length; i++){
+				sheet.append("\"" + characters[i].substring(0, characters[i].length()-4) + "\"");
+				if( i != characters.length-1)
+				sheet.append(", ");
+			}
+			sheet.append("]");
+			String theSheet = sheet.toString();
+			return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":" + theSheet + "}";
+		} else {
+			return "{\"r\":1,\"t\":\"[viewSheets] Username does not exist.\"}";
+		}		 
 	}
 	
 		
