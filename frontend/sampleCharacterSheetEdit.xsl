@@ -3,9 +3,8 @@
 
  <xsl:output encoding="ISO-8859-1" />
 <xsl:template match="/">
-	<body>
-
-		<table id="content">
+	
+		<table class="content">
 			<tr>
 				<th colspan="2">
 					<text class="header">Info</text>
@@ -171,7 +170,7 @@
 			
 			<tr>
 				<td >					
-					<div>
+					<div class="edit">
 						<form class="list" id="armourForm">
 							<input type="radio" name="armour" value="Padded" />Padded<br />
 							<input type="radio" name="armour" value="Leather" />Leather <br />
@@ -186,7 +185,7 @@
 					</div>
 				</td>
 				<td >				
-					<div>
+					<div class="edit">
 						<form class="list" id="shieldForm">
 							<input type="radio" name="shield" value="Small Steel" />Small Steel<br />
 							<input type="radio" name="shield" value="Small Wooden" />Small Wooden <br />
@@ -207,7 +206,7 @@
 			
 			<tr>
 				<td >
-					<div>
+					<div class="edit">
 						<form class="list" id="weaponForm1">
 							<input type="checkbox" name="weapon" value="Dagger" />Dagger<br />
 							<input type="checkbox" name="weapon" value="Club" />Club <br />
@@ -220,7 +219,7 @@
 					</div>
 				</td>
 				<td >
-					<div>
+					<div class="edit">
 						<form class="list" id="weaponForm2">
 							<input type="checkbox" name="weapon" value="Long Sword" />Long Sword <br />
 							<input type="checkbox" name="weapon" value="Battle Axe" />Battle Axe<br />
@@ -244,7 +243,7 @@
 			
 			<tr>
 				<td >
-					<div>
+					<div class="edit">
 						<form class="list" id="itemForm1">
 							<input type="checkbox" name="item" value="Torch" />Torch<br />
 							<input type="checkbox" name="item" value="Waterskin" />Waterskin <br />
@@ -255,7 +254,7 @@
 					</div>
 				</td>
 				<td >
-					<div>
+					<div class="edit">
 						<form class="list" id="itemForm2">
 							<input type="checkbox" name="item" value="McGuffin" />McGuffin<br />
 							<input type="checkbox" name="item" value="Chalk" />Chalk<br />
@@ -288,7 +287,6 @@
 			</tr>
 		</table>
 
-	</body>
 </html>
 </xsl:template>
 
