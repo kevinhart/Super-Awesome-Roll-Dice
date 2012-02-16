@@ -1,6 +1,6 @@
 <?php
 
-$path = $_GET['path'];
+$path = $_GET[ 'path' ];
 
 $session = curl_init( $path );
 
@@ -15,7 +15,12 @@ $xml_parser = xml_parser_create();
 xml_parse_into_struct( $xml_parser, $xml, $vals );
 xml_parser_free( $xml_parser );
 
-header("Content-Type: application/json");
-print $vals[ 0 ][ "value" ];
+header( "Content-Type: application/json" );
+$res = $vals[ 0 ][ "value" ];
+if ( $res == "" || $res == null ) {
+	print "{\"r\":1,\"t\":\"Could not connect to server.\"}";
+} else {
+	print $res;
+}
 
 ?>
