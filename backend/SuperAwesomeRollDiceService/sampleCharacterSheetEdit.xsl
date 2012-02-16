@@ -27,7 +27,11 @@
 					<text class="label">Race:</text>
 				</td>
 				<td>
-					<input class="edit" id="inRace"/>
+					<input class="edit" id="inRace">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/race"/>
+						</xsl:attribute>
+					</input>
 				</td>
 			</tr>
 			<tr>
@@ -36,6 +40,9 @@
 				</td>
 				<td>
 					<input class="edit" id="inClass"/>
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/class"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -44,6 +51,9 @@
 				</td>
 				<td>
 					<input class="edit" id="inGender"/>
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/gender"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 
@@ -53,6 +63,9 @@
 				</td>
 				<td>
 					<input class="edit" id="inLevel"/>
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/level"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 
@@ -62,6 +75,9 @@
 				</td>
 				<td>
 					<input class="edit" id="inExperience"/>
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/experience"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			
@@ -76,7 +92,10 @@
 					<text class="label">Strength:</text>
 				</td>
 				<td>
-					<input class="edit" id="inStr"></input>
+					<input class="edit" id="inStr">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/strength"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -84,7 +103,10 @@
 					<text class="label">Dexterity:</text>
 				</td>
 				<td>
-					<input class="edit" id="inDex"></input>
+					<input class="edit" id="inDex">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/dexterity"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -92,7 +114,10 @@
 					<text class="label">Mind:</text>
 				</td>
 				<td>
-					<input class="edit" id="inMind"></input>
+					<input class="edit" id="inMind">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/mind"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +125,10 @@
 					<text class="label">Charisma:</text>
 				</td>
 				<td>
-					<input class="edit" id="inCha"></input>
+					<input class="edit" id="inCha">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/charisma"/>
+						</xsl:attribute>
 				</td>
 			</tr>	
 			
@@ -114,7 +142,10 @@
 					<text>Physical:</text>
 				</td>
 				<td>
-					<input class="label" id="inPhys"></input>
+					<input class="label" id="inPhys">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/physical"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -122,7 +153,10 @@
 					<text>Subterfuge:</text>
 				</td>
 				<td>
-					<input class="label" id="inSub"></input>
+					<input class="label" id="inSub">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/subterfuge"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -130,7 +164,10 @@
 					<text>Knowledge:</text>
 				</td>
 				<td>
-					<input class="label" id="inKnow"></input>
+					<input class="label" id="inKnow">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/knowledge"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -138,7 +175,10 @@
 					<text>Communication:</text>
 				</td>
 				<td>
-					<input class="label" id="inComm"></input>
+					<input class="label" id="inComm">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/communication"/>
+						</xsl:attribute>
 				</td>
 			</tr>	
 			<tr>
@@ -146,7 +186,10 @@
 					<text>Survival:</text>
 				</td>
 				<td>
-					<input class="label" id="inSurv"></input>
+					<input class="label" id="inSurv">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/survival"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -154,7 +197,10 @@
 					<text>Fabrication:</text>
 				</td>
 				<td>
-					<input class="label" id="inFab"></input>
+					<input class="label" id="inFab">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="character/attributes/fabrication"/>
+						</xsl:attribute>
 				</td>
 			</tr>
 			<tr>
@@ -177,7 +223,7 @@
 							<input type="radio" name="armour" value="Studded Leather" />Studded Leather <br />
 							<input type="radio" name="armour" value="Scale Mail" />Scale Mail <br />
 							<input type="radio" name="armour" value="Splint Mail" />Splint Mail <br />
-							<input type="radio" name="armour" value="Chain Mail" />Chain Mail<br />
+							<input type="radio" name="armour" value="Chain Mail" <xsl:if test="character/inventory/amour/name = "Chain Mail">checked</xsl:if>/>Chain Mail<br />
 							<input type="radio" name="armour" value="Banded" />Banded <br />
 							<input type="radio" name="armour" value="Half Plate" />Half Plate <br />
 							<input type="radio" name="armour" value="Full Plate" />Full Plate <br />

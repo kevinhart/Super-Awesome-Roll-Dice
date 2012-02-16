@@ -70,7 +70,7 @@
 					<text class="attr-num"><xsl:value-of select="character/skills/subterfuge"/></text>
 				</div>
 				<div class="attr attrName">
-					<text class="attr-text" >Knoledge:</text>
+					<text class="attr-text" >Knowledge:</text>
 				</div>
 				<div class="attr attrNumber">
 					<text class="attr-num"><xsl:value-of select="character/skills/knowledge"/></text>
@@ -182,6 +182,7 @@
 					</tr>
 				</xsl:for-each>
 			</table>
+			<br />
 			<table class="weapons">
 				<th class="name">Armor</th>
 				<th>Dex Penalty</th>
@@ -190,7 +191,7 @@
 				<xsl:for-each select="character/inventory/armour">
 					<tr>
 						<td class="name"><xsl:value-of select="character/inventory/armour/name"/></td>
-						<td>0</td>
+						<td></td>
 						<td><xsl:value-of select="character/inventory/armour/minStr"/></td>
 						<td><xsl:value-of select="character/inventory/armour/acBonus"/></td>
 					</tr>
@@ -199,11 +200,12 @@
 					<tr>
 						<td class="name"><xsl:value-of select="character/inventory/shield/name"/></td>
 						<td><xsl:value-of select="character/inventory/shield/dexPenalty"/></td>
-						<td>0</td>
+						<td></td>
 						<td><xsl:value-of select="character/inventory/shield/acBonus"/></td>
 					</tr>
 				</xsl:for-each>
 			</table>
+			<br />
 			<table class="weapons">
 				<th class="name">Items</th>
 				<th>Descriptions</th>
