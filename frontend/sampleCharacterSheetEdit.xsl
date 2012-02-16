@@ -34,7 +34,11 @@
 					<text class="label">Character Name:</text>
 				</td>
 				<td>
-					<input class="edit" id="inName" value="<xsl:value-of select='/character/name'/>"/>
+					<input class="edit" id="inName">
+						<xsl:attribute name="value" namespace="uri">
+							<xsl:value-of select="/character/name"/>
+						</xsl:attribute>
+					</input>
 				</td>
 			</tr>
 			<tr>
@@ -209,7 +213,7 @@
 						</form>						
 					</div>
 				</td>
-			<tr>
+			</tr>
 			
 			<tr>
 				<th colspan="2">
@@ -246,7 +250,7 @@
 						</form>
 					</div>
 				</td>
-			<tr>
+			</tr>
 			
 			<tr>
 				<th colspan="2">
@@ -279,7 +283,7 @@
 						</form>
 					</div>
 				</td>
-			<tr>
+			</tr>
 			<tr>
 				<td>
 					<br />
