@@ -34,7 +34,7 @@
 					<text class="label">Character Name:</text>
 				</td>
 				<td>
-					<input class="edit" id="inName"/>
+					<input class="edit" id="inName" value="<xsl:value-of select='/character/name'/>"/>
 				</td>
 			</tr>
 			<tr>
