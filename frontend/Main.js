@@ -152,18 +152,6 @@ function viewSheetCallback( data ){
 }
 
 /*
-**Callback for Edit button associated with a character sheet
-*/
-function viewSheetCallbackEdit( data, cName, user ){
-		if(data['r'] == 0){
-			var sheet = data['d'];
-			document.getElementById("rightSide").innerHTML = sheet;
-		}else{
-			alert(data['t']);
-		}
-}
-
-/*
 **Callback for all errors on service calls
 */
 function serviceCallError( ){
@@ -196,12 +184,12 @@ function viewSheet(cName, user, mode){
 			dataType: "json"
 		} );
 	}else if(mode == 2){//edit sheet
-		var url = wsAddress + "?action=viewSheet&username="+user+"&characterName="+cName;
+		var url = wsAddress + "?action=viewSheet&username="+user+"&characterName="+cName+"&forEdit=yes";
 		$.ajax( {
 			async: false,
 			data: { "path" : encodeURI( url ) },
 			url: proxy,
-			success: function( data, textStatus, jqxhr ) { viewSheetCallbackEdit( data ); },
+			success: function( data, textStatus, jqxhr ) { viewSheetCallback( data ); },
 			error: function( jqhxr, status, errorThrown ) { serviceCallError() },
 			dataType: "json"
 		} );
