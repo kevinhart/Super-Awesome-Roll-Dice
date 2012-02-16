@@ -225,9 +225,9 @@
 			</p>
 			<p class="stats">
 				Gold: <xsl:value-of select="character/inventory/money/gold"/>
-				<span class="info"></span>
+				<span class="info"/>
 				Silver: <xsl:value-of select="character/inventory/money/silver"/>
-				<span class="info"></span>
+				<span class="info"/>
 				Copper: <xsl:value-of select="character/inventory/money/copper"/>
 			</p>
 		</div>

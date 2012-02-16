@@ -7,12 +7,12 @@
 		<table class="content">
 			<tr>
 				<th colspan="2">
-					<text class="header">Info</text>
+					<text class="editHeader">Info</text>
 				</th>
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Character Name:</text>
+					<text class="editLabel">Character Name:</text>
 				</td>
 				<td>
 					<input class="edit" id="inName">
@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Race:</text>
+					<text class="editLabel">Race:</text>
 				</td>
 				<td>
 					<input class="edit" id="inRace">
@@ -36,7 +36,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Class:</text>
+					<text class="editLabel">Class:</text>
 				</td>
 				<td>
 					<input class="edit" id="inClass"/>
@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Gender:</text>
+					<text class="editLabel">Gender:</text>
 				</td>
 				<td>
 					<input class="edit" id="inGender"/>
@@ -59,7 +59,7 @@
 
 			<tr>
 				<td>
-					<text class="label">Level:</text>
+					<text class="editLabel">Level:</text>
 				</td>
 				<td>
 					<input class="edit" id="inLevel"/>
@@ -71,7 +71,7 @@
 
 			<tr>
 				<td>
-					<text class="label">Experience:</text>
+					<text class="editLabel">Experience:</text>
 				</td>
 				<td>
 					<input class="edit" id="inExperience"/>
@@ -83,13 +83,13 @@
 			
 			<tr>
 				<th colspan="2">
-					<text class="header">Attributes</text>
+					<text class="editHeader">Attributes</text>
 				</th>
 			</tr>
 			
 			<tr>
 				<td>
-					<text class="label">Strength:</text>
+					<text class="editLabel">Strength:</text>
 				</td>
 				<td>
 					<input class="edit" id="inStr">
@@ -100,7 +100,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Dexterity:</text>
+					<text class="editLabel">Dexterity:</text>
 				</td>
 				<td>
 					<input class="edit" id="inDex">
@@ -111,7 +111,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Mind:</text>
+					<text class="editLabel">Mind:</text>
 				</td>
 				<td>
 					<input class="edit" id="inMind">
@@ -122,7 +122,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text class="label">Charisma:</text>
+					<text class="editLabel">Charisma:</text>
 				</td>
 				<td>
 					<input class="edit" id="inCha">
@@ -134,12 +134,12 @@
 			
 			<tr>
 				<th colspan="2">
-					<text class="header">Skills</text>
+					<text class="editHeader">Skills</text>
 				</th>
 			</tr>
 			<tr>
 				<td>
-					<text>Physical:</text>
+					<text class="editLabel">Physical:</text>
 				</td>
 				<td>
 					<input class="label" id="inPhys">
@@ -150,7 +150,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text>Subterfuge:</text>
+					<text class="editLabel">Subterfuge:</text>
 				</td>
 				<td>
 					<input class="label" id="inSub">
@@ -161,7 +161,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text>Knowledge:</text>
+					<text class="editLabel">Knowledge:</text>
 				</td>
 				<td>
 					<input class="label" id="inKnow">
@@ -172,7 +172,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text>Communication:</text>
+					<text class="editLabel">Communication:</text>
 				</td>
 				<td>
 					<input class="label" id="inComm">
@@ -183,7 +183,7 @@
 			</tr>	
 			<tr>
 				<td>
-					<text>Survival:</text>
+					<text class="editLabel">Survival:</text>
 				</td>
 				<td>
 					<input class="label" id="inSurv">
@@ -194,7 +194,7 @@
 			</tr>
 			<tr>
 				<td>
-					<text>Fabrication:</text>
+					<text class="editLabel">Fabrication:</text>
 				</td>
 				<td>
 					<input class="label" id="inFab">
@@ -206,11 +206,11 @@
 			<tr>
 				<th >
 			<br/>
-					<text class="header">Armour</text>
+					<text class="editHeader">Armour</text>
 				</th>
 				<th >
 			<br/>
-					<text class="header">Shield</text>
+					<text class="editHeader">Shield</text>
 				</th>
 			</tr>
 			
@@ -245,7 +245,7 @@
 			<tr>
 				<th colspan="2">
 			<br/>
-					<text class="header">Weapons</text>
+					<text class="editHeader">Weapons</text>
 				</th>
 
 			</tr>
@@ -282,7 +282,7 @@
 			<tr>
 				<th colspan="2">
 			<br/>
-					<text class="header">Items</text>
+					<text class="editHeader">Items</text>
 				</th>
 
 			</tr>
