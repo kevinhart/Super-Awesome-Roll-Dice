@@ -145,7 +145,7 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(data['d']));
+		MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(data['d']);
 		XPathDocument document = new XPathDocument(stream);
 		StringWriter writer = new StringWriter();
 		XslCompiledTransform transform = new XslCompiledTransform();
