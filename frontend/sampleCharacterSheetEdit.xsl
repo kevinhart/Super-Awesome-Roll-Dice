@@ -286,8 +286,6 @@
 				</td>
 			</tr>
 		</table>
-
-</html>
 </xsl:template>
 
 </xsl:stylesheet>
