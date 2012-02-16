@@ -145,10 +145,10 @@ function getSheetNames(user){
 */
 function viewSheetCallback( data ){
 	if(data['r'] == 0){
-		MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(data['d']);
-		XPathDocument document = new XPathDocument(stream);
-		StringWriter writer = new StringWriter();
-		XslCompiledTransform transform = new XslCompiledTransform();
+		var stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(data['d']));
+		var document = new XPathDocument(stream);
+		var writer = new StringWriter();
+		var transform = new XslCompiledTransform();
 		transform.Load("sampleCharacterSheetEdit.xsl");
 		transform.Transform(document, null, writer);
 		document.getElementById("rightSide").innerHTML = writer.ToString();
