@@ -294,56 +294,56 @@
 						<form class="list" id="armourForm">
 							<input class="armourInput" type="radio" name="armour" value="1" >
 								<xsl:if test="/character/inventory/armour/name = 'Padded'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checkedchecked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Padded<br />
 							<input  class="armourInput" type="radio" name="armour" value="2" >
 								<xsl:if test="/character/inventory/armour/name = 'Leather'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Leather <br />
 							<input  class="armourInput" type="radio" name="armour" value="3" >
 								<xsl:if test="/character/inventory/armour/name = 'Studded Leather'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Studded Leather <br />
 							<input class="armourInput"  type="radio" name="armour" value="4" >
 								<xsl:if test="/character/inventory/armour/name = 'Scale Mail'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Scale Mail <br />
 							<input  class="armourInput" type="radio" name="armour" value="5" >
 								<xsl:if test="/character/inventory/armour/name = 'Splint Mail'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Splint Mail <br />
 							<input  class="armourInput" type="radio" name="armour" value="6">
 								<xsl:if test="/character/inventory/armour/name = 'Chain Mail'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>
 							Chain Mail<br />
 							<input class="armourInput"  type="radio" name="armour" value="7" >
 								<xsl:if test="/character/inventory/armour/name = 'Banded'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Banded <br />
 							<input  class="armourInput" type="radio" name="armour" value="8" >
 								<xsl:if test="/character/inventory/armour/name = 'Half Plate'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Half Plate <br />
 							<input class="armourInput"  type="radio" name="armour" value="9" >
 								<xsl:if test="/character/inventory/armour/name = 'Full Plate'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Full Plate <br />
@@ -355,31 +355,31 @@
 						<form class="list" id="shieldForm">
 							<input class="shieldInput" type="radio" name="shield" value="0" >
 								<xsl:if test="not(/character/inventory/shield)">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>No Shield<br />
 							<input class="shieldInput" type="radio" name="shield" value="1" >
 								<xsl:if test="/character/inventory/shield/name = 'Small Steel'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Small Steel<br />
 							<input class="shieldInput" type="radio" name="shield" value="2" >
 								<xsl:if test="/character/inventory/shield/name = 'Small Wooden'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Small Wooden <br />
 							<input class="shieldInput" type="radio" name="shield" value="3" >
 								<xsl:if test="/character/inventory/shield/name = 'Large'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Large<br />
 							<input class="shieldInput" type="radio" name="shield" value="4" >
 								<xsl:if test="/character/inventory/shield/name = 'Tower'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Tower<br />
@@ -402,43 +402,43 @@
 						<form class="list" id="weaponForm1">
 							<input type="checkbox" name="weapon" value="1" >
 								<xsl:if test="/character/inventory/weapon/name = 'Dagger'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Dagger<br />
 							<input type="checkbox" name="weapon" value="2" >
 								<xsl:if test="/character/inventory/weapon/name = 'Club'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Club <br />
 							<input type="checkbox" name="weapon" value="3" >
 								<xsl:if test="/character/inventory/weapon/name = 'Light Hammer'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Light Hammer <br />
 							<input type="checkbox" name="weapon" value="4" >
 								<xsl:if test="/character/inventory/weapon/name = 'Short Sword'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Short Sword<br />
 							<input type="checkbox" name="weapon" value="5" >
 								<xsl:if test="/character/inventory/weapon/name = 'Spear'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Spear <br />
 							<input type="checkbox" name="weapon" value="6" >
 								<xsl:if test="/character/inventory/weapon/name = 'Light Crossbow'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Light Crossbow<br />
 							<input type="checkbox" name="weapon" value="7" >
 								<xsl:if test="/character/inventory/weapon/name = 'Short Bow'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Short Bow <br />
@@ -450,43 +450,43 @@
 						<form class="list" id="weaponForm2">
 							<input type="checkbox" name="weapon" value="8" >
 								<xsl:if test="/character/inventory/weapon/name = 'Long Sword'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Long Sword <br />
 							<input type="checkbox" name="weapon" value="9" >
 								<xsl:if test="/character/inventory/weapon/name = 'Battle Axe'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Battle Axe<br />
 							<input type="checkbox" name="weapon" value="10" >
 								<xsl:if test="/character/inventory/weapon/name = 'Flail'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Flail<br />
 							<input type="checkbox" name="weapon" value="11" >
 								<xsl:if test="/character/inventory/weapon/name = 'Two-handed Sword'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Two-handed Sword <br />
 							<input type="checkbox" name="weapon" value="12" >
 								<xsl:if test="/character/inventory/weapon/name = 'War Axe'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>War Axe<br />
 							<input type="checkbox" name="weapon" value="13" >
 								<xsl:if test="/character/inventory/weapon/name = 'Heavy Crossbow'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Heavy Crossbow<br />
 							<input type="checkbox" name="weapon" value="14" >
 								<xsl:if test="/character/inventory/weapon/name = 'Long Bow'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Long Bow <br />
@@ -509,31 +509,31 @@
 						<form class="list" id="itemForm1">
 							<input type="checkbox" name="item" value="15" >
 								<xsl:if test="/character/inventory/item/name = 'Torch'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Torch<br />
 							<input type="checkbox" name="item" value="16" >
 								<xsl:if test="/character/inventory/item/name = 'Waterskin'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Waterskin <br />
 							<input type="checkbox" name="item" value="17" >
 								<xsl:if test="/character/inventory/item/name = 'Crowbar'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Crowbar<br />
 							<input type="checkbox" name="item" value="18" >
 								<xsl:if test="/character/inventory/item/name = 'Holy Symbol'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Holy Symbol<br />
 							<input type="checkbox" name="item" value="19" >
 								<xsl:if test="/character/inventory/item/name = 'Rations'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Rations <br />
@@ -545,31 +545,31 @@
 						<form class="list" id="itemForm2">
 							<input type="checkbox" name="item" value="20" >
 								<xsl:if test="/character/inventory/item/name = 'McGuffin'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>McGuffin<br />
 							<input type="checkbox" name="item" value="21" >
 								<xsl:if test="/character/inventory/item/name = 'Chalk'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Chalk<br />
 							<input type="checkbox" name="item" value="22" >
 								<xsl:if test="/character/inventory/item/name = 'Pitons'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Pitons<br />
 							<input type="checkbox" name="item" value="23" >
 								<xsl:if test="/character/inventory/item/name = 'Hammer'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Hammer<br />
 							<input type="checkbox" name="item" value="24" >
 								<xsl:if test="/character/inventory/item/name = 'Disguise Kit'">
-									<xsl:attribute name="checked" >
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Disguise Kit<br />

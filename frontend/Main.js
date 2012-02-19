@@ -260,7 +260,7 @@ function xmlify(){
 			inputVal = inputArray[i].value;
 		}
 	}
-	switch(inputVal)[
+	switch(inputVal){
 		case 1:
 			xmlDoc += "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>";
 			break;
@@ -301,7 +301,7 @@ function xmlify(){
 		}
 	}
 	
-	switch(inputVal)[
+	switch(inputVal){
 		case 1:
 			xmlDoc += "<shield><name>Small Steel</name><dexPenalty>-1</dexPenalty><acBonus>+1</acBonus></shield>";
 			break;
