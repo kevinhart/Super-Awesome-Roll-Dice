@@ -190,7 +190,7 @@
 				<th>AC Bonus</th>
 				<xsl:for-each select="character/inventory/armour">
 					<tr>
-						<td class="name"><xsl:value-of select="name"/></td>
+						<td class="name"><xsl:value-of select="name"/></td> Armour
 						<td></td>
 						<td><xsl:value-of select="minStr"/></td>
 						<td><xsl:value-of select="acBonus"/></td>
@@ -212,7 +212,7 @@
 			<xsl:for-each select="character/inventory/item">
 				<tr>
 					<td class="name">
-						<xsl:value-of select="name"/>
+						<xsl:value-of select="name"/> Shield
 					</td>
 					<td>
 						<xsl:value-of select="descrip"/>				
