@@ -184,8 +184,9 @@ function saveSheetSuccess( data ){
 */
 function saveSheet(){
 	var xmldoc = xmlify();
-	var user = Document.getElementById("unInput").value;
-	var password = Document.getElementById("pwInput").value;
+	var user = document.getElementById("unInput").value;
+	var password = document.getElementById("pwInput").value; 
+	var cName = document.getElementById("inName").value;
 	var url = wsAddress + "?action=saveSheet&username="+user+"&password="+password+"&cName="+cName+"&xml="+escape( xmldoc );
 	$.ajax( {
 		async: false,
@@ -198,31 +199,30 @@ function saveSheet(){
 }
 
 function xmlify(){
-	var xmlDoc = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><character>";
-	xmlDoc += "<name>" + document.getElementById("inName").value + "</name>";
-	xmlDoc += "<player>" + document.getElementById("unInput").value + "</player>";	
-	xmlDoc += "<age>" + document.getElementById("inAge").value + "</age>";
-	xmlDoc += "<race>" + document.getElementById("inRace").value + "</race>";
-	xmlDoc += "<class>" + document.getElementById("inClass").value + "</class>";
-	xmlDoc += "<gender>" + document.getElementById("inGender").value + "</gender>";
-	xmlDoc += "<level>" + document.getElementById("inLevel").value + "</level>";
-	xmlDoc += "<experience>" + document.getElementById("inExperience").value + "</experience>";
-	xmlDoc += "<level>" + document.getElementById("inLevel").value + "</level>";
-	xmlDoc += "<hitpoints>" + document.getElementById("inHitpoints").value + "</hitpoints>";
-	xmlDoc += "<baseAttackBonus>" + document.getElementById("inBAB").value + "</baseAttackBonus>";
-	xmlDoc += "<baseDamageBonus>" + document.getElementById("inBDB").value + "</baseDamageBonus>";
-	xmlDoc += "<attacks>" + document.getElementById("inAttacks").value + "</attacks>";
-	xmlDoc += "<attributes><strength>" + document.getElementById("inStr").value + "</strength>";
-	xmlDoc += "<dexterity>" + document.getElementById("inDex").value + "</dexterity>";
-	xmlDoc += "<mind>" + document.getElementById("inMind").value + "</mind>";
-	xmlDoc += "<charisma>" + document.getElementById("inCha").value + "</charisma></attributes>";
-	xmlDoc += "<skills><physical>" + document.getElementById("inPhys").value + "</physical>";
-	xmlDoc += "<subterfuge>" + document.getElementById("inSub").value + "</subterfuge>";
-	xmlDoc += "<knowledge>" + document.getElementById("inKnow").value + "</knowledge>";
-	xmlDoc += "<communication>" + document.getElementById("inComm").value + "</communication>";
-	xmlDoc += "<survival>" + document.getElementById("inSurv").value + "</survival>";
-	xmlDoc += "<fabrication>" + document.getElementById("inFab").value + "</fabrication></skills>";
-	xmlDoc += "<inventory>";
+	var xmlDoc = document.getElementById("inName").value + ":";
+	xmlDoc += document.getElementById("unInput").value + ":";	
+	xmlDoc += document.getElementById("inAge").value + ":";
+	xmlDoc += document.getElementById("inRace").value + ":";
+	xmlDoc += document.getElementById("inClass").value + ":";
+	xmlDoc += document.getElementById("inGender").value + ":";
+	xmlDoc += document.getElementById("inLevel").value + ":";
+	xmlDoc += document.getElementById("inExperience").value + ":";
+	xmlDoc += document.getElementById("inLevel").value + ":";
+	xmlDoc += document.getElementById("inHitpoints").value + ":";
+	xmlDoc += document.getElementById("inBAB").value + ":";
+	xmlDoc += document.getElementById("inBDB").value + ":";
+	xmlDoc += document.getElementById("inAttacks").value + ":";
+	xmlDoc += document.getElementById("inStr").value + ":";
+	xmlDoc += document.getElementById("inDex").value + ":";
+	xmlDoc += document.getElementById("inMind").value + ":";
+	xmlDoc += document.getElementById("inCha").value + ":";
+	xmlDoc += document.getElementById("inPhys").value + ":";
+	xmlDoc += document.getElementById("inSub").value + ":";
+	xmlDoc += document.getElementById("inKnow").value + ":";
+	xmlDoc += document.getElementById("inComm").value + ":";
+	xmlDoc += document.getElementById("inSurv").value + ":";
+	xmlDoc += document.getElementById("inFab").value + ":";
+	
 	var inputArray = document.getElementsByClassName("armourInput");
 	var inputVal = 0;
 	for(var i = 0;i < 9;i++){
@@ -230,7 +230,9 @@ function xmlify(){
 			inputVal = inputArray[i].value;
 		}
 	}
-	switch(inputVal){
+	xmlDoc += inputVal + ":";
+	/*
+	switch(parseInt(inputVal)){
 		case 1:
 			xmlDoc += "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>";
 			break;
@@ -262,7 +264,7 @@ function xmlify(){
 			xmlDoc += "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>";
 			break;
 	}
-
+*/
 	inputArray = document.getElementsByClassName("shieldInput");
 	inputVal = 0;
 	for(var i = 0;i < 5;i++){
@@ -270,8 +272,9 @@ function xmlify(){
 			inputVal = inputArray[i].value;
 		}
 	}
-	
-	switch(inputVal){
+	xmlDoc += inputVal + ":";
+	/*
+	switch(parseInt(inputVal)){
 		case 1:
 			xmlDoc += "<shield><name>Small Steel</name><dexPenalty>-1</dexPenalty><acBonus>+1</acBonus></shield>";
 			break;
@@ -288,7 +291,7 @@ function xmlify(){
 			xmlDoc += "<shield><name>No Shield</name><dexPenalty>0</dexPenalty><acBonus>0</acBonus></shield>";
 			break;
 	}
-	
+	*/
 	//stolen from interwebs @http://bytes.com/topic/javascript/answers/712764-how-getelementbytype-check-validation-using-javascript
     var node_list = document.getElementsByTagName('input');
     var checkboxes = [];
@@ -302,8 +305,11 @@ function xmlify(){
 	}
 	//end stolen code
 	
-	for(item in checkboxes){
-		switch(item.value){
+	for(var i = 0;i < 24;i++){	
+		if(checkboxes[i].checked){
+			xmlDoc += checkboxes[i].value + ":";
+		}/*
+		switch((parseInt(checkboxes[i].value))){
 			case 1:				
 				xmlDoc += "<weapon twohanded=\"no\"><name>Dagger</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>";
 				xmlDoc += "<weapon twohanded=\"no\"><name>Thrown Dagger</name><stat>Dex</stat><damage>light</damage><range>5</range></weapon>";
@@ -376,14 +382,13 @@ function xmlify(){
 			case 23:
 				xmlDoc += "<item><name>Hammer</name><descrip>Useful for hitting non-enemy objects</descrip></item>";
 				break;
-			case 124:
+			case 24:
 				xmlDoc += "<item><name>Disguise Kit</name><descrip>Gives the hero +2 to +10 on subterfuge checks to disguise self</descrip></item>";
 			default:
 				break;
 
-		}
+		}*/
 	}
 	
-	xmlDoc += "</inventory></character>";
 	return xmlDoc;
 }
