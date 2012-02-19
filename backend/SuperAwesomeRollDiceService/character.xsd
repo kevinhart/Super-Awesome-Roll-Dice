@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="http://www.w3schools.com"
+elementFormDefault="qualified">
+
+<xs:complexType name="attributes">
+	<xs:sequence>
+		  <xs:element name="strength" type="xs:integer"/>
+		  <xs:element name="dexterity" type="xs:integer"/>
+		  <xs:element name="mind" type="xs:integer"/>
+		  <xs:element name="charisma" type="xs:integer"/>	
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="skills">
+	<xs:sequence>
+		  <xs:element name="physical" type="xs:integer"/>
+		  <xs:element name="subterfuge" type="xs:integer"/>
+		  <xs:element name="knowledge" type="xs:integer"/>
+		  <xs:element name="communication" type="xs:integer"/>	
+		  <xs:element name="survival" type="xs:integer"/>
+		  <xs:element name="fabrication" type="xs:integer"/>	
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="armour">
+	<xs:sequence>
+		  <xs:element name="name" type="xs:string"/>
+		  <xs:element name="dexPenalty" type="xs:integer"/>
+		  <xs:element name="minStr" type="xs:integer"/>
+		  <xs:element name="acBonus" type="xs:integer"/>	
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="shield">
+	<xs:sequence>
+		  <xs:element name="name" type="xs:string"/>
+		  <xs:element name="dexPenalty" type="xs:integer"/>
+		  <xs:element name="minStr" type="xs:integer"/>
+		  <xs:element name="acBonus" type="xs:integer"/>		
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="weapon">
+	<xs:sequence>
+		  <xsd:attribute name="twohanded" type="xsd:string"/> 
+		  <xs:element name="name" type="xs:string"/>
+		  <xs:element name="stat" type="xs:string"/>
+		  <xs:element name="damage" type="xs:string"/>
+		  <xs:element name="range" type="xs:string"/>	
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="money">
+	<xs:sequence>
+		  <xs:element name="gold" type="xs:integer"/>
+		  <xs:element name="silver" type="xs:integer"/>
+		  <xs:element name="copper" type="xs:integer"/>	
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="item">
+	<xs:sequence>
+		  <xs:element name="name" type="xs:string"/>
+		  <xs:element name="descrip" type="xs:string"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="inventory">
+	<xs:sequence>
+		  <xs:element name="armour" type="xs:integer"/>
+		  <xs:element name="shield" type="xs:integer"/>
+		  <xs:element name="weapon" type="xs:integer" maxOccurs="unbounded"/>
+		  <xs:element name="money" type="xs:integer"/>	
+		  <xs:element name="item" type="xs:integer" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:element name="character">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="player" type="xs:string"/>
+      <xs:element name="age" type="xs:integer"/>
+      <xs:element name="race" type="xs:string"/>
+      <xs:element name="class" type="xs:string"/>
+      <xs:element name="gender" type="xs:string"/>
+      <xs:element name="level" type="xs:integer"/>
+      <xs:element name="experience" type="xs:integer"/>
+      <xs:element name="attributes" type="attributes"/>
+      <xs:element name="hitpoints" type="xs:integer"/>
+      <xs:element name="baseAttackBonus" type="xs:integer"/>
+      <xs:element name="baseDamageBonus" type="xs:integer"/>
+      <xs:element name="attacks" type="xs:string"/>
+      <xs:element name="skills" type="xs:skills"/>
+      <xs:element name="inventory" type="inventory"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
