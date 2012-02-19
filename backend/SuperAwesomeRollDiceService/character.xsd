@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns="http://www.w3schools.com"
-elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
 <xs:complexType name="attributes">
 	<xs:sequence>
@@ -27,7 +25,6 @@ elementFormDefault="qualified">
 <xs:complexType name="armour">
 	<xs:sequence>
 		  <xs:element name="name" type="xs:string"/>
-		  <xs:element name="dexPenalty" type="xs:integer"/>
 		  <xs:element name="minStr" type="xs:integer"/>
 		  <xs:element name="acBonus" type="xs:integer"/>	
 	</xs:sequence>
@@ -38,7 +35,6 @@ elementFormDefault="qualified">
 	<xs:sequence>
 		  <xs:element name="name" type="xs:string"/>
 		  <xs:element name="dexPenalty" type="xs:integer"/>
-		  <xs:element name="minStr" type="xs:integer"/>
 		  <xs:element name="acBonus" type="xs:integer"/>		
 	</xs:sequence>
 </xs:complexType>
@@ -46,12 +42,12 @@ elementFormDefault="qualified">
 
 <xs:complexType name="weapon">
 	<xs:sequence>
-		  <xsd:attribute name="twohanded" type="xsd:string"/> 
 		  <xs:element name="name" type="xs:string"/>
 		  <xs:element name="stat" type="xs:string"/>
 		  <xs:element name="damage" type="xs:string"/>
-		  <xs:element name="range" type="xs:string"/>	
+		  <xs:element name="range" type="xs:string"/>		  
 	</xs:sequence>
+	<xs:attribute name="twohanded" type="xs:string"/> 
 </xs:complexType>
 
 
@@ -72,11 +68,11 @@ elementFormDefault="qualified">
 
 <xs:complexType name="inventory">
 	<xs:sequence>
-		  <xs:element name="armour" type="xs:integer"/>
-		  <xs:element name="shield" type="xs:integer"/>
-		  <xs:element name="weapon" type="xs:integer" maxOccurs="unbounded"/>
-		  <xs:element name="money" type="xs:integer"/>	
-		  <xs:element name="item" type="xs:integer" maxOccurs="unbounded"/>
+		  <xs:element name="armour" type="armour"/>
+		  <xs:element name="shield" type="shield"/>
+		  <xs:element name="weapon" type="weapon" maxOccurs="unbounded"/>
+		  <xs:element name="money" type="money"/>	
+		  <xs:element name="item" type="item" maxOccurs="unbounded"/>
 	</xs:sequence>
 </xs:complexType>
 
@@ -96,7 +92,7 @@ elementFormDefault="qualified">
       <xs:element name="baseAttackBonus" type="xs:integer"/>
       <xs:element name="baseDamageBonus" type="xs:integer"/>
       <xs:element name="attacks" type="xs:string"/>
-      <xs:element name="skills" type="xs:skills"/>
+      <xs:element name="skills" type="skills"/>
       <xs:element name="inventory" type="inventory"/>
     </xs:sequence>
   </xs:complexType>

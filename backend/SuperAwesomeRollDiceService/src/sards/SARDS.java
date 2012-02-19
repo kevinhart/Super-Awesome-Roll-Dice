@@ -227,7 +227,7 @@ public class SARDS implements Provider< Source > {
 	    	int inputVal = Integer.parseInt( st.nextToken() );
 	    	switch ( inputVal ) {
 				case 1:
-					xmlDoc.append( "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>" );
+					xmlDoc.append( "<armour><name>Padded</name><minStr>0</minStr><acBonus>1</acBonus></armour>" );
 					break;
 				case 2:
 					xmlDoc.append( "<armour><name>Leather</name><minStr>6</minStr><acBonus>2</acBonus></armour>" );
@@ -254,7 +254,7 @@ public class SARDS implements Provider< Source > {
 					xmlDoc.append( "<armour><name>Full Plate</name><minStr>15</minStr><acBonus>8</acBonus></armour>" );
 					break;
 				default:
-					xmlDoc.append( "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>" );
+					xmlDoc.append( "<armour><name>Padded</name><minStr>0</minStr><acBonus>1</acBonus></armour>" );
 					break;
 	    	}
 	    

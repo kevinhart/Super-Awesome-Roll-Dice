@@ -28,22 +28,22 @@
 		<fabrication>0</fabrication>
 	</skills>
 	<inventory>
-		<weapon twohanded="yes">
-			<name>Long Bow</name>
-			<stat>Dex</stat>
-			<damage>heavy</damage>
-			<range>100</range>
-		</weapon>
-		<shield>
-			<name>No Shield</name>
-			<dexPenalty>0</dexPenalty>
-			<acBonus>0</acBonus>
-		</shield>
 		<armour>
 			<name>Leather</name>
 			<minStr>6</minStr>
 			<acBonus>2</acBonus>
 		</armour>
+		<shield>
+			<name>No Shield</name>
+			<dexPenalty>0</dexPenalty>
+			<acBonus>0</acBonus>
+		</shield>
+		<weapon twohanded="yes">
+			<name>Long Bow</name>
+			<stat>Dex</stat>
+			<damage>heavy</damage>
+			<range>100</range>
+		</weapon>		
 		<money>
 			<gold>1001</gold>
 			<silver>1</silver>
