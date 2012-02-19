@@ -246,3 +246,15 @@ th.name
 {	
 	text-align:left;
 }
+text.editLabel
+{
+	font-size:16px;
+}
+input
+{
+	font-size:16px;
+}
+text.editHeader
+{
+	font-size:22px;
+}

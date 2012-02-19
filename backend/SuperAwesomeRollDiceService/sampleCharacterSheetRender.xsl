@@ -70,7 +70,7 @@
 					<text class="attr-num"><xsl:value-of select="character/skills/subterfuge"/></text>
 				</div>
 				<div class="attr attrName">
-					<text class="attr-text" >Knoledge:</text>
+					<text class="attr-text" >Knowledge:</text>
 				</div>
 				<div class="attr attrNumber">
 					<text class="attr-num"><xsl:value-of select="character/skills/knowledge"/></text>
@@ -182,6 +182,7 @@
 					</tr>
 				</xsl:for-each>
 			</table>
+			<br />
 			<table class="weapons">
 				<th class="name">Armor</th>
 				<th>Dex Penalty</th>
@@ -189,21 +190,22 @@
 				<th>AC Bonus</th>
 				<xsl:for-each select="character/inventory/armour">
 					<tr>
-						<td class="name"><xsl:value-of select="character/inventory/armour/name"/></td>
-						<td>0</td>
-						<td><xsl:value-of select="character/inventory/armour/minStr"/></td>
-						<td><xsl:value-of select="character/inventory/armour/acBonus"/></td>
+						<td class="name"><xsl:value-of select="name"/></td>
+						<td></td>
+						<td><xsl:value-of select="minStr"/></td>
+						<td><xsl:value-of select="acBonus"/></td>
 					</tr>
 				</xsl:for-each>
 				<xsl:for-each select="character/inventory/shield">
 					<tr>
-						<td class="name"><xsl:value-of select="character/inventory/shield/name"/></td>
-						<td><xsl:value-of select="character/inventory/shield/dexPenalty"/></td>
-						<td>0</td>
-						<td><xsl:value-of select="character/inventory/shield/acBonus"/></td>
+						<td class="name"><xsl:value-of select="name"/></td>
+						<td><xsl:value-of select="dexPenalty"/></td>
+						<td></td>
+						<td><xsl:value-of select="acBonus"/></td>
 					</tr>
 				</xsl:for-each>
 			</table>
+			<br />
 			<table class="weapons">
 				<th class="name">Items</th>
 				<th>Descriptions</th>
@@ -223,9 +225,9 @@
 			</p>
 			<p class="stats">
 				Gold: <xsl:value-of select="character/inventory/money/gold"/>
-				<span class="info"></span>
+				<span class="info"/>
 				Silver: <xsl:value-of select="character/inventory/money/silver"/>
-				<span class="info"></span>
+				<span class="info"/>
 				Copper: <xsl:value-of select="character/inventory/money/copper"/>
 			</p>
 		</div>
@@ -234,8 +236,3 @@
 </xsl:template>
 
 </xsl:stylesheet>
-
-<!--
-Add an if tree for attacks, bab and bdb
-
--->
