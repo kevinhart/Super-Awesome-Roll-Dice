@@ -28,18 +28,18 @@
 	<fabrication>0</fabrication>
 </skills>
 <inventory>
+	<armour><name>Padded</name><minStr>0</minStr><acBonus>1</acBonus></armour>
+	<shield>
+		<name>No Shield</name>
+		<dexPenalty>0</dexPenalty>
+		<acBonus>0</acBonus>
+	</shield>
 	<weapon twohanded="yes">
 		<name>Short Bow</name>
 		<stat>Dex</stat>
 		<damage>light</damage>
 		<range>60</range>
 	</weapon>
-	<shield>
-		<name>No Shield</name>
-		<dexPenalty>0</dexPenalty>
-		<acBonus>0</acBonus>
-	</shield>
-	<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>
 	<money>
 		<gold>150</gold>
 		<silver>9</silver>

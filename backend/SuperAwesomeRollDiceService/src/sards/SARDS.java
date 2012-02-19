@@ -1,6 +1,7 @@
 package sards;
 
 import javax.annotation.Resource;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -10,6 +11,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import javax.xml.ws.BindingType;
 import javax.xml.ws.Provider;
 import javax.xml.ws.WebServiceContext;
@@ -21,6 +25,7 @@ import javax.xml.ws.http.HTTPException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
@@ -29,6 +34,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringBufferInputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -41,12 +47,14 @@ import java.util.StringTokenizer;
 @BindingType( value=HTTPBinding.HTTP_BINDING )
 public class SARDS implements Provider< Source > {
 
-    @Resource( type=Object.class )
+
+	@Resource( type=Object.class )
     protected WebServiceContext wsContext;
 
     private HashMap< String, String > validUsers;
     
-    private final String DB_DIR_NAME = "CHARACTERDB";   
+    private static final String DB_DIR_NAME = "CHARACTERDB";   
+    private static final String XSD_FILE_NAME = "character.xsd";
     
     public SARDS() {
     	validUsers = new HashMap< String, String >();
@@ -199,7 +207,6 @@ public class SARDS implements Provider< Source > {
 	    	xmlDoc.append( "<gender>" + st.nextToken() + "</gender>" );
 	    	xmlDoc.append( "<level>" + st.nextToken() + "</level>" );
 	    	xmlDoc.append( "<experience>" + st.nextToken() + "</experience>" );
-	    	xmlDoc.append( "<level>" + st.nextToken() + "</level>" );
 	    	xmlDoc.append( "<hitpoints>" + st.nextToken() + "</hitpoints>" );
 	    	xmlDoc.append( "<baseAttackBonus>" + st.nextToken() + "</baseAttackBonus>" );
 	    	xmlDoc.append( "<baseDamageBonus>" + st.nextToken() + "</baseDamageBonus>" );
@@ -219,7 +226,7 @@ public class SARDS implements Provider< Source > {
 	    	int inputVal = Integer.parseInt( st.nextToken() );
 	    	switch ( inputVal ) {
 				case 1:
-					xmlDoc.append( "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>" );
+					xmlDoc.append( "<armour><name>Padded</name><minStr>0</minStr><acBonus>1</acBonus></armour>" );
 					break;
 				case 2:
 					xmlDoc.append( "<armour><name>Leather</name><minStr>6</minStr><acBonus>2</acBonus></armour>" );
@@ -246,7 +253,7 @@ public class SARDS implements Provider< Source > {
 					xmlDoc.append( "<armour><name>Full Plate</name><minStr>15</minStr><acBonus>8</acBonus></armour>" );
 					break;
 				default:
-					xmlDoc.append( "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>" );
+					xmlDoc.append( "<armour><name>Padded</name><minStr>0</minStr><acBonus>1</acBonus></armour>" );
 					break;
 	    	}
 	    
@@ -386,6 +393,38 @@ public class SARDS implements Provider< Source > {
 		if ( xml == null ) {
 			return "{\"r\":5,\"t\":\"[SaveSheet] Could not parse character sheet data.\"}";
 		}
+		
+		// validate xml
+		try {
+			DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			@SuppressWarnings( "deprecation" )
+			Document document = parser.parse( new StringBufferInputStream( xml ) );
+			// create a SchemaFactory capable of understanding WXS schemas
+			SchemaFactory factory = SchemaFactory.newInstance( XMLConstants.W3C_XML_SCHEMA_NS_URI );
+
+			// load a WXS schema, represented by a Schema instance
+			Source schemaFile = new StreamSource( new File( XSD_FILE_NAME ) );
+			Schema schema = factory.newSchema( schemaFile );			
+			Validator validator = schema.newValidator();
+
+			// validate the DOM tree				
+			validator.validate(new DOMSource(document));
+		} catch ( SAXException e ) {
+			try {
+				FileWriter f = new FileWriter( "CHARACTERTEST.xml" );
+				f.write( xml );
+				f.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			return "{\"r\":6,\"t\":\"[SaveSheet] Character sheet invalid against schema.\"}";
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			return "{\"r\":7,\"t\":\"[SaveSheet] Error occurred when validating character sheet.\",\"d\":\"" + e.toString() + "\"}";
+		}
+		
     	String cName = args.get( "cName" );
     	
     	// ensure character db directory exists
