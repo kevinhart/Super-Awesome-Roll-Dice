@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="sampleCharacterSheetRender.xsl"?>
+<character>
+	<name>Banem</name>
+	<player>Kevin</player>
+	<age>26</age>
+	<race>Human</race>
+	<class>Rogue</class>
+	<gender>Male</gender>
+	<level>2</level>
+	<experience>110</experience>
+	<attributes>
+		<strength>7</strength>
+		<dexterity>10</dexterity>
+		<mind>5</mind>
+		<charisma>4</charisma>
+	</attributes>
+	<hitpoints>20</hitpoints>
+	<baseAttackBonus>1</baseAttackBonus>
+	<baseDamageBonus>2</baseDamageBonus>
+	<attacks>1</attacks>
+	<skills>
+		<physical>2</physical>
+		<subterfuge>2</subterfuge>
+		<knowledge>0</knowledge>
+		<communication>0</communication>
+		<survival>1</survival>
+		<fabrication>0</fabrication>
+	</skills>
+	<inventory>
+		<weapon twohanded="yes">
+			<name>Long Bow</name>
+			<stat>Dex</stat>
+			<damage>heavy</damage>
+			<range>100</range>
+		</weapon>
+		<shield>
+			<name>No Shield</name>
+			<dexPenalty>0</dexPenalty>
+			<acBonus>0</acBonus>
+		</shield>
+		<armour>
+			<name>Leather</name>
+			<minStr>6</minStr>
+			<acBonus>2</acBonus>
+		</armour>
+		<money>
+			<gold>1001</gold>
+			<silver>1</silver>
+			<copper>1</copper>
+		</money>
+		<item>
+			<name>Rations</name>
+			<descrip>Dried meat, fruit and cheese</descrip>
+		</item>
+		<item>
+			<name>McGuffin</name>
+			<descrip>Allows hero to bypass one plot hook</descrip>
+		</item>
+	</inventory>
+</character>
