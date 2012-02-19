@@ -383,6 +383,9 @@ public class SARDS implements Provider< Source > {
     	String pass = args.get( "password" );
 		String xml = args.get( "xml" );
 		xml = toCharacterSheetXml( xml );
+		if ( xml == null ) {
+			return "{\"r\":5,\"t\":\"[SaveSheet] Could not parse character sheet data.\"}";
+		}
     	String cName = args.get( "cName" );
     	
     	// ensure character db directory exists
