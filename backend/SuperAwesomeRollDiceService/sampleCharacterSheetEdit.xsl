@@ -345,7 +345,7 @@
 					<div class="edit">
 						<form class="list" id="shieldForm">
 							<input class="shieldInput" type="radio" name="shield" value="0" >
-								<xsl:if test="not(/character/inventory/shield)">
+								<xsl:if test="/character/inventory/shield/name = 'No Shield'">
 									<xsl:attribute name="checked" >checked</xsl:attribute>
 								</xsl:if>
 							</input>No Shield<br />
