@@ -186,6 +186,176 @@ public class SARDS implements Provider< Source > {
     	             .replace( "\n", "" );
     }
     
+    private String toCharacterSheetXml( String raw ) {
+    	try {
+	    	StringTokenizer st = new StringTokenizer( raw, ";" );
+	    	StringBuilder xmlDoc = new StringBuilder();
+	    	xmlDoc.append( "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><character>" );
+	    	xmlDoc.append( "<name>" + st.nextToken() + "</name>" );
+	    	xmlDoc.append( "<player>" + st.nextToken() + "</player>" );	
+	    	xmlDoc.append( "<age>" + st.nextToken() + "</age>" );
+	    	xmlDoc.append( "<race>" + st.nextToken() + "</race>" );
+	    	xmlDoc.append( "<class>" + st.nextToken() + "</class>" );
+	    	xmlDoc.append( "<gender>" + st.nextToken() + "</gender>" );
+	    	xmlDoc.append( "<level>" + st.nextToken() + "</level>" );
+	    	xmlDoc.append( "<experience>" + st.nextToken() + "</experience>" );
+	    	xmlDoc.append( "<level>" + st.nextToken() + "</level>" );
+	    	xmlDoc.append( "<hitpoints>" + st.nextToken() + "</hitpoints>" );
+	    	xmlDoc.append( "<baseAttackBonus>" + st.nextToken() + "</baseAttackBonus>" );
+	    	xmlDoc.append( "<baseDamageBonus>" + st.nextToken() + "</baseDamageBonus>" );
+	    	xmlDoc.append( "<attacks>" + st.nextToken() + "</attacks>" );
+	    	xmlDoc.append( "<attributes><strength>" + st.nextToken() + "</strength>" );
+	    	xmlDoc.append( "<dexterity>" + st.nextToken() + "</dexterity>" );
+	    	xmlDoc.append( "<mind>" + st.nextToken() + "</mind>" );
+	    	xmlDoc.append( "<charisma>" + st.nextToken() + "</charisma></attributes>" );
+	    	xmlDoc.append( "<skills><physical>" + st.nextToken() + "</physical>" );
+	    	xmlDoc.append( "<subterfuge>" + st.nextToken() + "</subterfuge>" );
+	    	xmlDoc.append( "<knowledge>" + st.nextToken() + "</knowledge>" );
+	    	xmlDoc.append( "<communication>" + st.nextToken() + "</communication>" );
+	    	xmlDoc.append( "<survival>" + st.nextToken() + "</survival>" );
+	    	xmlDoc.append( "<fabrication>" + st.nextToken() + "</fabrication></skills>" );
+	    	xmlDoc.append( "<inventory>" );
+	    	
+	    	int inputVal = Integer.parseInt( st.nextToken() );
+	    	switch ( inputVal ) {
+				case 1:
+					xmlDoc.append( "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>" );
+					break;
+				case 2:
+					xmlDoc.append( "<armour><name>Leather</name><minStr>6</minStr><acBonus>2</acBonus></armour>" );
+					break;
+				case 3:
+					xmlDoc.append( "<armour><name>Studded Leather</name><minStr>8</minStr><acBonus>3</acBonus></armour>" );
+					break;
+				case 4:
+					xmlDoc.append( "<armour><name>Scale Mail</name><minStr>10</minStr><acBonus>4</acBonus></armour>" );
+					break;
+				case 5:
+					xmlDoc.append( "<armour><name>Splint Mail</name><minStr>12</minStr><acBonus>5</acBonus></armour>" );
+					break;
+				case 6:
+					xmlDoc.append( "<armour><name>Chain Mail</name><minStr>12</minStr><acBonus>5</acBonus></armour>" );
+					break;
+				case 7:
+					xmlDoc.append( "<armour><name>Banded</name><minStr>14</minStr><acBonus>6</acBonus></armour>" );
+					break;
+				case 8:
+					xmlDoc.append( "<armour><name>Half Plate</name><minStr>14</minStr><acBonus>7</acBonus></armour>" );
+					break;
+				case 9:
+					xmlDoc.append( "<armour><name>Full Plate</name><minStr>15</minStr><acBonus>8</acBonus></armour>" );
+					break;
+				default:
+					xmlDoc.append( "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>" );
+					break;
+	    	}
+	    
+	    	inputVal = Integer.parseInt( st.nextToken() );
+	    	switch ( inputVal ) {
+				case 1:
+					xmlDoc.append( "<shield><name>Small Steel</name><dexPenalty>-1</dexPenalty><acBonus>+1</acBonus></shield>" );
+					break;
+				case 2:
+					xmlDoc.append( "<shield><name>Small Wooden</name><dexPenalty>-2</dexPenalty><acBonus>+1</acBonus></shield>" );
+					break;
+				case 3:
+					xmlDoc.append( "<shield><name>Large</name><dexPenalty>-2</dexPenalty><acBonus>2</acBonus></shield>" );
+					break;
+				case 4:
+					xmlDoc.append( "<shield><name>Tower</name><dexPenalty>-3</dexPenalty><acBonus>+3</acBonus></shield>" );
+					break;
+				default:
+					xmlDoc.append( "<shield><name>No Shield</name><dexPenalty>0</dexPenalty><acBonus>0</acBonus></shield>" );
+					break;
+	    	}
+	    	
+	    	while ( st.hasMoreTokens() ) {
+	    		inputVal = Integer.parseInt( st.nextToken() );
+	    		switch ( inputVal ) {
+					case 1:				
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Dagger</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>" );
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Thrown Dagger</name><stat>Dex</stat><damage>light</damage><range>5</range></weapon>" );
+						break;
+					case 2:
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Club</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>" );
+						break;
+					case 3:
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Light Hammer</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>" );
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Thrown Light Hammer</name><stat>Dex</stat><damage>light</damage><range>20</range></weapon>" );
+						break;
+					case 4:
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Short Sword</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>" );
+						break;
+					case 5:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Spear</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>" );
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Thrown Spear</name><stat>Dex</stat><damage>light</damage><range>20</range></weapon>" );
+						break;
+					case 6:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Light Crossbow</name><stat>Dex</stat><damage>light</damage><range>80</range></weapon>" );
+						break;
+					case 7:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Short Bow</name><stat>Dex</stat><damage>light</damage><range>60</range></weapon>" );
+						break;
+					case 8:
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Long Sword</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>" );
+						break;
+					case 9:
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Battle Axe</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>" );
+						break;
+					case 10:
+						xmlDoc.append( "<weapon twohanded=\"no\"><name>Flail</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>" );
+						break;
+					case 11:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Two-handed Sword</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>" );
+						break;
+					case 12:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>War Axe</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>" );
+						break;
+					case 13:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Heavy Crossbow</name><stat>Dex</stat><damage>heavy</damage><range>120</range></weapon>" );
+						break;
+					case 14:
+						xmlDoc.append( "<weapon twohanded=\"yes\"><name>Long Bow</name><stat>Dex</stat><damage>heavy</damage><range>100</range></weapon>" );
+						break;
+					case 15:
+						xmlDoc.append( "<item><name>Torch</name><descrip>Provides light for 2 hours</descrip></item>" );
+						break;
+					case 16:				
+						xmlDoc.append( "<item><name>Waterskin</name><descrip>Holds enough water for 1 day</descrip></item>" );
+						break;
+					case 17:
+						xmlDoc.append( "<item><name>Crowbar</name><descrip>Gives the hero a +2 bonus to disarming traps and prying open doors</descrip></item>" );
+						break;
+					case 18:
+						xmlDoc.append( "<item><name>Holy Symbol</name><descrip>Allows the hero to channel his god's power</descrip></item>" );
+						break;
+					case 19:
+						xmlDoc.append( "<item><name>Rations</name><descrip>Dried meat, fruit and cheese</descrip></item>" );
+						break;
+					case 20:
+						xmlDoc.append( "<item><name>McGuffin</name><descrip>Allows hero to bypass one plot hook</descrip></item>" );
+						break;
+					case 21:
+						xmlDoc.append( "<item><name>Chalk</name><descrip>Stick of chalk for marking</descrip></item>" );
+						break;
+					case 22:
+						xmlDoc.append( "<item><name>Pitons</name><descrip>Useful for climbing or jamming open doors</descrip></item>" );
+						break;
+					case 23:
+						xmlDoc.append( "<item><name>Hammer</name><descrip>Useful for hitting non-enemy objects</descrip></item>" );
+						break;
+					case 24:
+						xmlDoc.append( "<item><name>Disguise Kit</name><descrip>Gives the hero +2 to +10 on subterfuge checks to disguise self</descrip></item>" );
+					default:
+						break;
+	    		}
+	    	}
+	    	
+	    	xmlDoc.append( "</inventory></character>" );
+	    	return xmlDoc.toString();
+    	} catch ( Exception e ) { return null; }
+    }
+    
     private String Login( HashMap< String, String > args ) {
     	if ( !( args.containsKey( "username" ) && args.containsKey( "password" ) ) ){
     		return "{\"r\":1,\"t\":\"[Login] Username and/or password not specified.\"}";
@@ -212,6 +382,7 @@ public class SARDS implements Provider< Source > {
     	String user = args.get( "username" );
     	String pass = args.get( "password" );
 		String xml = args.get( "xml" );
+		xml = toCharacterSheetXml( xml );
     	String cName = args.get( "cName" );
     	
     	// ensure character db directory exists
