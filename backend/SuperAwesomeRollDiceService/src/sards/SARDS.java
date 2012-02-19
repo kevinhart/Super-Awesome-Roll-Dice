@@ -207,7 +207,6 @@ public class SARDS implements Provider< Source > {
 	    	xmlDoc.append( "<gender>" + st.nextToken() + "</gender>" );
 	    	xmlDoc.append( "<level>" + st.nextToken() + "</level>" );
 	    	xmlDoc.append( "<experience>" + st.nextToken() + "</experience>" );
-	    	xmlDoc.append( "<level>" + st.nextToken() + "</level>" );
 	    	xmlDoc.append( "<hitpoints>" + st.nextToken() + "</hitpoints>" );
 	    	xmlDoc.append( "<baseAttackBonus>" + st.nextToken() + "</baseAttackBonus>" );
 	    	xmlDoc.append( "<baseDamageBonus>" + st.nextToken() + "</baseDamageBonus>" );
@@ -411,6 +410,15 @@ public class SARDS implements Provider< Source > {
 			// validate the DOM tree				
 			validator.validate(new DOMSource(document));
 		} catch ( SAXException e ) {
+			try {
+				FileWriter f = new FileWriter( "CHARACTERTEST.xml" );
+				f.write( xml );
+				f.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			return "{\"r\":6,\"t\":\"[SaveSheet] Character sheet invalid against schema.\"}";
 		} catch ( Exception e ) {
 			e.printStackTrace();
