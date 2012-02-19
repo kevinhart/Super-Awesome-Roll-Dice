@@ -1,6 +1,6 @@
 /**
  * @author John Deer
- * @contributor Kevin Hart is gay
+ * @contributor Kevin Hart
  */
  
  var userName = "";
@@ -187,7 +187,7 @@ function saveSheet(){
 	var user = document.getElementById("unInput").value;
 	var password = document.getElementById("pwInput").value; 
 	var cName = document.getElementById("inName").value;
-	var url = wsAddress + "?action=saveSheet&username="+user+"&password="+password+"&cName="+cName+"&xml="+escape( xmldoc );
+	var url = wsAddress + "?action=saveSheet&username="+user+"&password="+SHA1(password)+"&cName="+cName+"&xml="+escape( xmldoc );
 	$.ajax( {
 		async: false,
 		data: { "path" : encodeURI( url ) },
