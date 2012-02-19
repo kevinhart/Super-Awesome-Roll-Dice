@@ -1,6 +1,14 @@
 <credentials>
 	<validUser>
-		<username>kevin</username>
+		<username>Kevin</username>
 		<password>03d67c263c27a453ef65b29e30334727333ccbcd</password>
+	</validUser>
+	<validUser>
+		<username>John</username>
+		<password>201f40baae79cd6ccac940ac0033454c317de22c</password>
+	</validUser>
+	<validUser>
+		<username>Rob</username>
+		<password>84a516841ba77a5b4648de2cd0dfcb30ea46dbb4</password>
 	</validUser>
 </credentials>
