@@ -207,7 +207,6 @@ function xmlify(){
 	xmlDoc += document.getElementById("inGender").value + ":";
 	xmlDoc += document.getElementById("inLevel").value + ":";
 	xmlDoc += document.getElementById("inExperience").value + ":";
-	xmlDoc += document.getElementById("inLevel").value + ":";
 	xmlDoc += document.getElementById("inHitpoints").value + ":";
 	xmlDoc += document.getElementById("inBAB").value + ":";
 	xmlDoc += document.getElementById("inBDB").value + ":";

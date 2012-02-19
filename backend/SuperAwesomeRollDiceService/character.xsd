@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.w3schools.com"
 xmlns="http://www.w3schools.com"
 elementFormDefault="qualified">
 
@@ -91,11 +92,11 @@ elementFormDefault="qualified">
       <xs:element name="gender" type="xs:string"/>
       <xs:element name="level" type="xs:integer"/>
       <xs:element name="experience" type="xs:integer"/>
-      <xs:element name="attributes" type="attributes"/>
       <xs:element name="hitpoints" type="xs:integer"/>
       <xs:element name="baseAttackBonus" type="xs:integer"/>
       <xs:element name="baseDamageBonus" type="xs:integer"/>
       <xs:element name="attacks" type="xs:string"/>
+      <xs:element name="attributes" type="attributes"/>
       <xs:element name="skills" type="xs:skills"/>
       <xs:element name="inventory" type="inventory"/>
     </xs:sequence>
