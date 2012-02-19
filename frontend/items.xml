@@ -10,6 +10,7 @@
 <armour><name>Half Plate</name><minStr>14</minStr><acBonus>7</acBonus></armour>	
 <armour><name>Full Plate</name><minStr>15</minStr><acBonus>8</acBonus></armour></allArmour><allShields>
 <shield><name>Large</name><dexPenalty>-2</dexPenalty><acBonus>2</acBonus></shield>
+<shield><name>No Shield</name><dexPenalty>0</dexPenalty><acBonus>0</acBonus></shield>
 <shield><name>Small Steel</name><dexPenalty>-1</dexPenalty><acBonus>+1</acBonus></shield>
 <shield><name>Small Wooden</name><dexPenalty>-2</dexPenalty><acBonus>+1</acBonus></shield>
 <shield><name>Tower</name><dexPenalty>-3</dexPenalty><acBonus>+3</acBonus></shield></allShields><allWeapons>
