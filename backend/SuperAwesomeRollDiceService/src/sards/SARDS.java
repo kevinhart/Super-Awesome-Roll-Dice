@@ -181,7 +181,7 @@ public class SARDS implements Provider< Source > {
     	return rawXml.replace( "<", "&lt;" )
     	             .replace( ">", "&gt;" )
     	             .replace( "\"", "\\\"" )
-    	             .replace( "\'", "\\\'" )
+    	             //.replace( "\'", "\\\'" )
     	             .replace( "\t", "" )
     	             .replace( "\n", "" );
     }
