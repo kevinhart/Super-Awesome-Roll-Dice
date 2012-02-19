@@ -283,7 +283,7 @@ public class SARDS implements Provider< Source > {
 	    	}
 	    	
 	    	// put money in
-	    	xmlDoc.append( "<money><gold>" + gold + "</gold><silver>" + silver + "</silver><copper>" + copper + "</coppper></money>" );
+	    	xmlDoc.append( "<money><gold>" + gold + "</gold><silver>" + silver + "</silver><copper>" + copper + "</copper></money>" );
 	    	
 	    	while ( st.hasMoreTokens() ) {
 	    		inputVal = Integer.parseInt( st.nextToken() );
