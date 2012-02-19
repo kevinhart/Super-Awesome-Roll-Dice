@@ -288,7 +288,7 @@ function xmlify(){
 		case 9:
 			xmlDoc += "<armour><name>Full Plate</name><minStr>15</minStr><acBonus>8</acBonus></armour>";
 			break;
-		default;
+		default:
 			xmlDoc += "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>";
 			break;
 	}
@@ -314,7 +314,7 @@ function xmlify(){
 		case 4:
 			xmlDoc += "<shield><name>Tower</name><dexPenalty>-3</dexPenalty><acBonus>+3</acBonus></shield>";
 			break;
-		default;
+		default:
 			break;
 	}
 	

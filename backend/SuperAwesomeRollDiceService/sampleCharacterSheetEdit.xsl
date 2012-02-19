@@ -294,7 +294,7 @@
 						<form class="list" id="armourForm">
 							<input class="armourInput" type="radio" name="armour" value="1" >
 								<xsl:if test="/character/inventory/armour/name = 'Padded'">
-									<xsl:attribute name="checked" >checkedchecked
+									<xsl:attribute name="checked" >checked
 									</xsl:attribute>
 								</xsl:if>
 							</input>Padded<br />
