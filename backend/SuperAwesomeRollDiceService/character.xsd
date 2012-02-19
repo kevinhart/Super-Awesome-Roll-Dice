@@ -70,9 +70,9 @@
 	<xs:sequence>
 		  <xs:element name="armour" type="armour"/>
 		  <xs:element name="shield" type="shield"/>
-		  <xs:element name="weapon" type="weapon" maxOccurs="unbounded"/>
-		  <xs:element name="money" type="money"/>	
-		  <xs:element name="item" type="item" maxOccurs="unbounded"/>
+		  <xs:element name="money" type="money"/>
+		  <xs:element name="weapon" type="weapon" minOccurs="0" maxOccurs="unbounded"/>		  	
+		  <xs:element name="item" type="item" minOccurs="0" maxOccurs="unbounded"/>
 	</xs:sequence>
 </xs:complexType>
 

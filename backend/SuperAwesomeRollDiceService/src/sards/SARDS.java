@@ -221,6 +221,12 @@ public class SARDS implements Provider< Source > {
 	    	xmlDoc.append( "<communication>" + st.nextToken() + "</communication>" );
 	    	xmlDoc.append( "<survival>" + st.nextToken() + "</survival>" );
 	    	xmlDoc.append( "<fabrication>" + st.nextToken() + "</fabrication></skills>" );
+	    	
+	    	// money comes next
+	    	int gold = Integer.parseInt( st.nextToken() );
+	    	int silver = Integer.parseInt( st.nextToken() );
+	    	int copper = Integer.parseInt( st.nextToken() );
+	    	
 	    	xmlDoc.append( "<inventory>" );
 	    	
 	    	int inputVal = Integer.parseInt( st.nextToken() );
@@ -275,6 +281,9 @@ public class SARDS implements Provider< Source > {
 					xmlDoc.append( "<shield><name>No Shield</name><dexPenalty>0</dexPenalty><acBonus>0</acBonus></shield>" );
 					break;
 	    	}
+	    	
+	    	// put money in
+	    	xmlDoc.append( "<money><gold>" + gold + "</gold><silver>" + silver + "</silver><copper>" + copper + "</coppper></money>" );
 	    	
 	    	while ( st.hasMoreTokens() ) {
 	    		inputVal = Integer.parseInt( st.nextToken() );
