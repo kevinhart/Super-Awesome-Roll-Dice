@@ -213,9 +213,7 @@ function saveSheetSuccess( data ){
 **Then will call service to save
 */
 function saveSheet(){
-	var xmldoc = ""
-	//go over each element in right side
-		//add relevant xml to string
+	var xmldoc = xmlify();
 	var user = Document.getElementById("unInput").value;
 	var password = Document.getElementById("pwInput").value;
 	var url = wsAddress + "?action=saveSheet&username="+user+"&password="+password+"&cName="+cName+"&xml="+escape( xmldoc );
@@ -229,4 +227,192 @@ function saveSheet(){
 	} );
 }
 
+function xmlify(){
+	var xmlDoc = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><character>";
+	xmlDoc += "<name>" + document.getElementById("inName").value + "</name>";
+	xmlDoc += "<player>" + document.getElementById("unInput").value + "</player>";	
+	xmlDoc += "<age>" + document.getElementById("inAge").value + "</age>";
+	xmlDoc += "<race>" + document.getElementById("inRace").value + "</race>";
+	xmlDoc += "<class>" + document.getElementById("inClass").value + "</class>";
+	xmlDoc += "<gender>" + document.getElementById("inGender").value + "</gender>";
+	xmlDoc += "<level>" + document.getElementById("inLevel").value + "</level>";
+	xmlDoc += "<experience>" + document.getElementById("inExperience").value + "</experience>";
+	xmlDoc += "<level>" + document.getElementById("inLevel").value + "</level>";
+	xmlDoc += "<hitpoints>" + document.getElementById("inHitpoints").value + "</hitpoints>";
+	xmlDoc += "<baseAttackBonus>" + document.getElementById("inBAB").value + "</baseAttackBonus>";
+	xmlDoc += "<baseDamageBonus>" + document.getElementById("inBDB").value + "</baseDamageBonus>";
+	xmlDoc += "<attacks>" + document.getElementById("inAttacks").value + "</attacks>";
+	xmlDoc += "<attributes><strength>" + document.getElementById("inStr").value + "</strength>";
+	xmlDoc += "<dexterity>" + document.getElementById("inDex").value + "</dexterity>";
+	xmlDoc += "<mind>" + document.getElementById("inMind").value + "</mind>";
+	xmlDoc += "<charisma>" + document.getElementById("inCha").value + "</charisma></attributes>";
+	xmlDoc += "<skills><physical>" + document.getElementById("inPhys").value + "</physical>";
+	xmlDoc += "<subterfuge>" + document.getElementById("inSub").value + "</subterfuge>";
+	xmlDoc += "<knowledge>" + document.getElementById("inKnow").value + "</knowledge>";
+	xmlDoc += "<communication>" + document.getElementById("inComm").value + "</communication>";
+	xmlDoc += "<survival>" + document.getElementById("inSurv").value + "</survival>";
+	xmlDoc += "<fabrication>" + document.getElementById("inFab").value + "</fabrication></skills>";
+	xmlDoc += "<inventory>";
+	var inputArray = document.getElementsByClassName("armourInput");
+	var inputVal = 0;
+	for(var i = 0;i < 9;i++){
+		if(inputArray[i].checked && inputArray[i].value > inputVal){
+			inputVal = inputArray[i].value;
+		}
+	}
+	switch(inputVal)[
+		case 1:
+			xmlDoc += "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>";
+			break;
+		case 2:
+			xmlDoc += "<armour><name>Leather</name><minStr>6</minStr><acBonus>2</acBonus></armour>";
+			break;
+		case 3:
+			xmlDoc += "<armour><name>Studded Leather</name><minStr>8</minStr><acBonus>3</acBonus></armour>";
+			break;
+		case 4:
+			xmlDoc += "<armour><name>Scale Mail</name><minStr>10</minStr><acBonus>4</acBonus></armour>";
+			break;
+		case 5:
+			xmlDoc += "<armour><name>Splint Mail</name><minStr>12</minStr><acBonus>5</acBonus></armour>";
+			break;
+		case 6:
+			xmlDoc += "<armour><name>Chain Mail</name><minStr>12</minStr><acBonus>5</acBonus></armour>";
+			break;
+		case 7:
+			xmlDoc += "<armour><name>Banded</name><minStr>14</minStr><acBonus>6</acBonus></armour>";
+			break;
+		case 8:
+			xmlDoc += "<armour><name>Half Plate</name><minStr>14</minStr><acBonus>7</acBonus></armour>";
+			break;
+		case 9:
+			xmlDoc += "<armour><name>Full Plate</name><minStr>15</minStr><acBonus>8</acBonus></armour>";
+			break;
+		default;
+			xmlDoc += "<armour><name>Padded</name><minStr>-</minStr><acBonus>1</acBonus></armour>";
+			break;
+	}
 
+	inputArray = document.getElementsByClassName("shieldInput");
+	inputVal = 0;
+	for(var i = 0;i < 5;i++){
+		if(inputArray[i].checked && inputArray[i].value > inputVal){
+			inputVal = inputArray[i].value;
+		}
+	}
+	
+	switch(inputVal)[
+		case 1:
+			xmlDoc += "<shield><name>Small Steel</name><dexPenalty>-1</dexPenalty><acBonus>+1</acBonus></shield>";
+			break;
+		case 2:
+			xmlDoc += "<shield><name>Small Wooden</name><dexPenalty>-2</dexPenalty><acBonus>+1</acBonus></shield>";
+			break;
+		case 3:
+			xmlDoc += "<shield><name>Large</name><dexPenalty>-2</dexPenalty><acBonus>2</acBonus></shield>";
+			break;
+		case 4:
+			xmlDoc += "<shield><name>Tower</name><dexPenalty>-3</dexPenalty><acBonus>+3</acBonus></shield>";
+			break;
+		default;
+			break;
+	}
+	
+	//stolen from interwebs @http://bytes.com/topic/javascript/answers/712764-how-getelementbytype-check-validation-using-javascript
+    var node_list = document.getElementsByTagName('input');
+    var checkboxes = [];
+ 
+    for (var i = 0; i < node_list.length; i++) {
+        var node = node_list[i];
+ 
+        if (node.getAttribute('type') == 'checkbox') {
+            checkboxes.push(node);
+        }
+	}
+	//end stolen code
+	
+	for(item in checkboxes){
+		switch(item.value){
+			case 1:				
+				xmlDoc += "<weapon twohanded=\"no\"><name>Dagger</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>";
+				xmlDoc += "<weapon twohanded=\"no\"><name>Thrown Dagger</name><stat>Dex</stat><damage>light</damage><range>5</range></weapon>";
+				break;
+			case 2:
+				xmlDoc += "<weapon twohanded=\"no\"><name>Club</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>";
+				break;
+			case 3:
+				xmlDoc += "<weapon twohanded=\"no\"><name>Light Hammer</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>";
+				xmlDoc += "<weapon twohanded=\"no\"><name>Thrown Light Hammer</name><stat>Dex</stat><damage>light</damage><range>20</range></weapon>";
+				break;
+			case 4:
+				xmlDoc += "<weapon twohanded=\"no\"><name>Short Sword</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>";
+				break;
+			case 5:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Spear</name><stat>Str</stat><damage>light</damage><range>-</range></weapon>";
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Thrown Spear</name><stat>Dex</stat><damage>light</damage><range>20</range></weapon>";
+				break;
+			case 6:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Light Crossbow</name><stat>Dex</stat><damage>light</damage><range>80</range></weapon>";
+				break;
+			case 7:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Short Bow</name><stat>Dex</stat><damage>light</damage><range>60</range></weapon>";
+				break;
+			case 8:
+				xmlDoc += "<weapon twohanded=\"no\"><name>Long Sword</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>";
+				break;
+			case 9:
+				xmlDoc += "<weapon twohanded=\"no\"><name>Battle Axe</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>";
+				break;
+			case 10:
+				xmlDoc += "<weapon twohanded=\"no\"><name>Flail</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>";
+				break;
+			case 11:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Two-handed Sword</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>";
+				break;
+			case 12:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>War Axe</name><stat>Str</stat><damage>heavy</damage><range>-</range></weapon>";
+				break;
+			case 13:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Heavy Crossbow</name><stat>Dex</stat><damage>heavy</damage><range>120</range></weapon>";
+				break;
+			case 14:
+				xmlDoc += "<weapon twohanded=\"yes\"><name>Long Bow</name><stat>Dex</stat><damage>heavy</damage><range>100</range></weapon>";
+				break;
+			case 15:
+				xmlDoc += "<item><name>Torch</name><descrip>Provides light for 2 hours</descrip></item>";
+				break;
+			case 16:				
+				xmlDoc += "<item><name>Waterskin</name><descrip>Holds enough water for 1 day</descrip></item>";
+				break;
+			case 17:
+				xmlDoc += "<item><name>Crowbar</name><descrip>Gives the hero a +2 bonus to disarming traps and prying open doors</descrip></item>";
+				break;
+			case 18:
+				xmlDoc += "<item><name>Holy Symbol</name><descrip>Allows the hero to channel his god's power</descrip></item>";
+				break;
+			case 19:
+				xmlDoc += "<item><name>Rations</name><descrip>Dried meat, fruit and cheese</descrip></item>";
+				break;
+			case 20:
+				xmlDoc += "<item><name>McGuffin</name><descrip>Allows hero to bypass one plot hook</descrip></item>";
+				break;
+			case 21:
+				xmlDoc += "<item><name>Chalk</name><descrip>Stick of chalk for marking</descrip></item>";
+				break;
+			case 22:
+				xmlDoc += "<item><name>Pitons</name><descrip>Useful for climbing or jamming open doors</descrip></item>";
+				break;
+			case 23:
+				xmlDoc += "<item><name>Hammer</name><descrip>Useful for hitting non-enemy objects</descrip></item>";
+				break;
+			case 124:
+				xmlDoc += "<item><name>Disguise Kit</name><descrip>Gives the hero +2 to +10 on subterfuge checks to disguise self</descrip></item>";
+			default:
+				break;
+
+		}
+	}
+	
+	xmlDoc += "</inventory></character>";
+	return xmlDoc;
+}
