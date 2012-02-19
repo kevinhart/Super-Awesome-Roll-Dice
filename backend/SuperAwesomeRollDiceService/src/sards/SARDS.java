@@ -356,12 +356,18 @@ public class SARDS implements Provider< Source > {
 	
 		
 	public String viewSheets( String username, String characterName, boolean isEdit ){
-	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	Document doc = null;
-	String theResult = null;
+		// make sure that character exists for the user
+		File file = new File( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml" );
+		if ( !file.exists() ) {
+			return "{\"r\":1,\"t\":\"[viewSheets] Character does not exist for given user.\"}";
+		}
+			
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		Document doc = null;
+		String theResult = null;
     	try {    		
     		DocumentBuilder builder = factory.newDocumentBuilder();
-    		doc = builder.parse( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml");
+    		doc = builder.parse( DB_DIR_NAME + "/" + username+ "/" +characterName + ".xml" );
 			DOMSource domSource = new DOMSource(doc);
 			StringWriter writer = new StringWriter();
 			StreamResult result = new StreamResult(writer);
@@ -373,7 +379,8 @@ public class SARDS implements Provider< Source > {
 			transformer.transform(domSource, result);
 			theResult = writer.toString();
     	} catch ( Exception e ) {
-    		// pass
+    		e.printStackTrace();
+    		return "{\"r\":1,\"t\":\"[viewSheets] Failure.\",\"d\":\"" + toSafeXml( e.toString() ) + "\"}"; 
     	}
 		return "{\"r\":0,\"t\":\"[viewSheets] Success.\",\"d\":\"" + toSafeXml( theResult ) + "\"}"; 
 	}
