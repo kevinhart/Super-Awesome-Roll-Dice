@@ -541,6 +541,42 @@
 			</tr>
 			<tr>
 				<td>
+					<text class="editLabel">Gold:</text>
+				</td>
+				<td>
+					<input class="edit" id="inGold">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="/character/inventory/money/gold"/>
+						</xsl:attribute>
+					</input>
+				</td>
+			</tr>			
+			<tr>
+				<td>
+					<text class="editLabel">Silver:</text>
+				</td>
+				<td>
+					<input class="edit" id="inSilver">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="/character/inventory/money/silver"/>
+						</xsl:attribute>
+					</input>
+				</td>
+			</tr>			
+			<tr>
+				<td>
+					<text class="editLabel">Copper:</text>
+				</td>
+				<td>
+					<input class="edit" id="inCopper">
+						<xsl:attribute name="value" >
+							<xsl:value-of select="/character/inventory/money/copper"/>
+						</xsl:attribute>
+					</input>
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<br />
 				</td>
 			</tr>

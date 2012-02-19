@@ -221,7 +221,9 @@ function xmlify(){
 	xmlDoc += document.getElementById("inComm").value + ":";
 	xmlDoc += document.getElementById("inSurv").value + ":";
 	xmlDoc += document.getElementById("inFab").value + ":";
-	
+	xmlDoc += document.getElementById("inGold").value + ":";
+	xmlDoc += document.getElementById("inSilver").value + ":";
+	xmlDoc += document.getElementById("inCopper").value + ":";
 	var inputArray = document.getElementsByClassName("armourInput");
 	var inputVal = 0;
 	for(var i = 0;i < 9;i++){
