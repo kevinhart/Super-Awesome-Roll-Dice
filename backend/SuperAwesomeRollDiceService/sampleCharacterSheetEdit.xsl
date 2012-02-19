@@ -532,7 +532,7 @@
 							</input>Hammer<br />
 							<input type="checkbox" name="item" value="24" >
 								<xsl:if test="/character/inventory/item/name = 'Disguise Kit'">
-									<xsl:attribute name="checked" >checked</xsl:attribute></xsl:attribute>
+									<xsl:attribute name="checked" >checked</xsl:attribute>
 								</xsl:if>
 							</input>Disguise Kit<br />
 						</form>
