@@ -188,7 +188,7 @@ public class SARDS implements Provider< Source > {
     
     private String toCharacterSheetXml( String raw ) {
     	try {
-	    	StringTokenizer st = new StringTokenizer( raw, ";" );
+	    	StringTokenizer st = new StringTokenizer( raw, ":" );
 	    	StringBuilder xmlDoc = new StringBuilder();
 	    	xmlDoc.append( "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><character>" );
 	    	xmlDoc.append( "<name>" + st.nextToken() + "</name>" );
