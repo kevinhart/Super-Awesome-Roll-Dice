@@ -160,6 +160,7 @@ public class SARDS implements Provider< Source > {
 		StringBuilder resultBuilder = new StringBuilder();
 		//get values into list
 		String[] myString = values.split("[()]");
+		String criteria = myString.length > 2 ? "criteria" : "criterion";
 		StringBuilder Xquery = new StringBuilder();
 		Xquery.append("for $x in doc(\"database.xml\")/database/user/character ");
 		Xquery.append("let $y:=$x/.. ");
@@ -191,7 +192,7 @@ public class SARDS implements Provider< Source > {
 		Xquery.append(" return <names>{data($x/../@name)}:{data($x/@name)} </names>");
 		Iterator it = doQuery(Xquery.toString());
 		String curUsername = "";
-		resultBuilder.append("[");
+		resultBuilder.append("{");
 		while(it.hasNext()){
 				XdmItem item = (XdmItem)it.next();
 				String aString = item.toString();
@@ -209,10 +210,15 @@ public class SARDS implements Provider< Source > {
 				}
 					resultBuilder.append("\""+tmp[1]+"\", ");
 			}
+			if(resultBuilder.length() > 5){
 			resultBuilder.delete(resultBuilder.length()-2,resultBuilder.length());
-			resultBuilder.append("]]");
+			resultBuilder.append("]}");
+			}else{
+			resultBuilder.append("}");
+			return "{\"r\":1,\"t\":\"[xQueryStatement] No characters meet this " + criteria + ".\"}";
+			}
 			String result = resultBuilder.toString();
-		return "{\"r\":0,\"t\":\"[xQueryStatement] Success.\",\"d\":\"" + result + "\"}";
+			return "{\"r\":0,\"t\":\"[xQueryStatement] Success.\",\"d\":" + result + "}";
 	}
 	
 	
