@@ -126,7 +126,7 @@ public class SARDS implements Provider< Source > {
         	}
         } else if ( action.equals( "query" ) ) {
         	if ( !args.containsKey( "querystring" ) ) {
-        		body = "{\"r\":1,\"t\":\"[xQueryStatement] Parameter \"querystring\" is required.\"}";
+        		body = "{\"r\":1,\"t\":\"[xQueryStatement] Parameter \\\"querystring\\\" is required.\"}";
         	} else {
         		body = xQueryStatement( args.get( "querystring" ) );
         	}
