@@ -1,3 +1,21 @@
 To Compile: javac -classpath "saxon9ee.jar" sards/SARDS*.java
 
 To Run: java -classpath "saxon9ee.jar:." sards.SARDSPublisher http://LOCAL_MACHINE:4241/sards
+
+--
+
+Because of the system requirements for running both the frontend and backend (a server with PHP
+libraries for the frontend proxy, machine with Java and superuser privileges for the backend, etc.)
+we have set up a demo system on a CS-hosted machine.
+
+The backend is hosted at: http://saskatoon.cs.rit.edu:4241/sards
+The frontend is hosted at: http://saskatoon.cs.rit.edu:4242/sardstest
+
+Other than experimenting with the backend directly, you will not need to access that backend
+address. In fact, to successfully interact directly with the backend you must use a
+well-formed query string. An invalid or incomplete query string causes undefined behaviour when
+viewing directly from a browser.
+
+To use the system, simply visit the frontend address listed above in a modern browser (has
+been tested with the most recent versions of Mozilla Firefox and Google Chrome; support for other
+browsers is unknown and cannot be guaranteed).
