@@ -144,7 +144,7 @@ public class SARDS implements Provider< Source > {
 	 * Values is Struct made of (Stat, valueOfStat, operator)*
 	 * Multiple structs are considered and not or
 	 *
-	 * Stat can be : Strength, Dexterity, Mind, Charisma, Physical, Subterfuge, Knowledge, Communication, Survival, Fabrication
+	 * Stat can be : strength, dexterity, mind, charisma, physical, subterfuge, knowledge, communication, survival, fabrication
 	 * valueOfStat can be: an Integoer
 	 * Operator is : 1( for =) 2(for gt) 3(for lt)
 	 * Example (Strength, 20, 1)(Physical, 3, 2)
