@@ -575,11 +575,7 @@
 					</input>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<br />
-				</td>
-			</tr>
+
 			<tr>
 				<td>
 					<text>Username:</text>
