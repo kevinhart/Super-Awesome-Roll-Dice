@@ -47,6 +47,7 @@ import java.util.Iterator;
 
 
 
+@SuppressWarnings("deprecation")
 @WebServiceProvider
 @BindingType( value=HTTPBinding.HTTP_BINDING )
 public class SARDS implements Provider< Source > {
@@ -123,6 +124,12 @@ public class SARDS implements Provider< Source > {
         			body = viewSheets( args.get( "username" ) );
         		}
         	}
+        } else if ( action.equals( "query" ) ) {
+        	if ( !args.containsKey( "querystring" ) ) {
+        		body = "{\"r\":1,\"t\":\"[xQueryStatement] Parameter \"querystring\" is required.\"}";
+        	} else {
+        		body = xQueryStatement( args.get( "querystring" ) );
+        	}
         } else {
         	body = null;
         }
@@ -150,43 +157,42 @@ public class SARDS implements Provider< Source > {
 	 * Example (Strength, 20, 1)(Physical, 3, 2)
 	 */
 	public String xQueryStatement(String values){
-	StringBuilder resultBuilder = new StringBuilder();
-	//get values into list
-	ArrayList<String> tmpStrings = new ArrayList<String>();
-	String[] myString = values.split("[()]");
-	StringBuilder Xquery = new StringBuilder();
-	Xquery.append("for $x in doc(\"database.xml\")/database/user/character ");
-	Xquery.append("let $y:=$x/.. ");
-	Xquery.append("where ");
-	//For every struct
-	for(int i =0; i< myString.length; i++){
-	//remove commas
-	myString[i] = myString[i].replace(",","");
-	//split them to seperate values
-	String[] tmp = myString[i].split("[ ]");
-	//split is giving some blank strings dont count them
-	if(tmp.length==3){
-	//tmp is now made of 3 values therefore 
-	Xquery.append("$x/" + tmp[0]);
-	if(tmp[2].equals("1")){
-		Xquery.append("=");
-	}else if(tmp[2].equals("2")){
-		Xquery.append(">");
-	}else{
-		Xquery.append("<");
-	}
-	Xquery.append(tmp[1]);
+		StringBuilder resultBuilder = new StringBuilder();
+		//get values into list
+		String[] myString = values.split("[()]");
+		StringBuilder Xquery = new StringBuilder();
+		Xquery.append("for $x in doc(\"database.xml\")/database/user/character ");
+		Xquery.append("let $y:=$x/.. ");
+		Xquery.append("where ");
+		//For every struct
+		for(int i =0; i< myString.length; i++){
+		//remove commas
+		myString[i] = myString[i].replace(",","");
+		//split them to seperate values
+		String[] tmp = myString[i].split("[ ]");
+		//split is giving some blank strings dont count them
+		if(tmp.length==3){
+		//tmp is now made of 3 values therefore 
+		Xquery.append("$x/" + tmp[0]);
+		if(tmp[2].equals("1")){
+			Xquery.append("=");
+		}else if(tmp[2].equals("2")){
+			Xquery.append(">");
+		}else{
+			Xquery.append("<");
+		}
+		Xquery.append(tmp[1]);
 	
-	if(myString.length > 1+i){
-	Xquery.append(" and ");
-	}
-	}
-	}
-	Xquery.append(" return <names>{data($x/../@name)}:{data($x/@name)} </names>");
-	Iterator it = doQuery(Xquery.toString());
-	String curUsername = "";
-	resultBuilder.append("[");
-	while(it.hasNext()){
+		if(myString.length > 1+i){
+		Xquery.append(" and ");
+		}
+		}
+		}
+		Xquery.append(" return <names>{data($x/../@name)}:{data($x/@name)} </names>");
+		Iterator it = doQuery(Xquery.toString());
+		String curUsername = "";
+		resultBuilder.append("[");
+		while(it.hasNext()){
 				XdmItem item = (XdmItem)it.next();
 				String aString = item.toString();
 				aString = aString.replace("<names>","");
@@ -503,7 +509,6 @@ public class SARDS implements Provider< Source > {
 		// validate xml
 		try {
 			DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			@SuppressWarnings( "deprecation" )
 			Document document = parser.parse( new StringBufferInputStream( xml ) );
 			// create a SchemaFactory capable of understanding WXS schemas
 			SchemaFactory factory = SchemaFactory.newInstance( XMLConstants.W3C_XML_SCHEMA_NS_URI );
@@ -520,8 +525,7 @@ public class SARDS implements Provider< Source > {
 				FileWriter f = new FileWriter( "CHARACTERTEST.xml" );
 				f.write( xml );
 				f.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+			} catch ( IOException e1 ) {
 				e1.printStackTrace();
 			}
 			
