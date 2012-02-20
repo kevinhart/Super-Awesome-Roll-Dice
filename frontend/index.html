@@ -14,9 +14,9 @@
 	</head>
 		<div id="SiteDiv">
 			<div id="leftSide">
-					<h1>Super Awesome Roll Dice</h1>
-					<button id="viewButton" onclick="loadSheets(document.getElementById('login').value)" >View Sheets for User</button><br />
+					<h1 onclick="resetRightDiv()">Super Awesome Roll Dice</h1>					
 					<text class="login" id="loginText" >User:</text><input  class="login" id="login"></input><br />
+					<button id="viewButton" onclick="loadSheets(document.getElementById('login').value)" >View Sheets for User</button><br /><br />
 					<button id="viewButton" onclick="loadSheets('')" >View Sheets for All Users</button><br /><br />
 					<button id="createButton" onclick="viewSheet('','',1)" >Create New</button><br /><br /><br />
 					<table>
@@ -115,8 +115,7 @@
 					<button id="searchButton" onclick="" >Search</button><br />
 			</div>
 			<div id="rightSide">
-				<!--<iframe id="innerPage" src="http://1.bp.blogspot.com/-3SWHcmHraUg/TWaCMYzvRaI/AAAAAAAAADs/LOtuvHY_C5w/s1600/Beacon_logo.jpg" onload="updateButtons()" width="100%" height="100%" frameborder="0"></iframe>-->
-				<img src="http://1.bp.blogspot.com/-3SWHcmHraUg/TWaCMYzvRaI/AAAAAAAAADs/LOtuvHY_C5w/s1600/Beacon_logo.jpg" width="100%"></img>
+				<img src="Beacon_logo.jpg" width="100%" />
 			</div>
 		</div>
 </html>

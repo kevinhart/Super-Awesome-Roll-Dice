@@ -579,11 +579,11 @@
 			<tr>
 				<td>
 					<text>Username:</text>
-					<input id="unInput"></input>
+					<input type="text" id="unInput" />
 				</td>
 				<td>
 					<text>Password:</text>				
-					<input id="pwInput"></input>
+					<input type="password" id="pwInput" />
 				</td>
 			</tr>
 			<tr>
