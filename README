@@ -1,0 +1,3 @@
+To Compile: javac -classpath "saxon9ee.jar" sards/SARDS*.java
+
+To Run: java -classpath "saxon9ee.jar" sards.SARDSPublisher http://LOCAL_MACHINE:4241/sards
