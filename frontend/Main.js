@@ -7,6 +7,10 @@
  var wsAddress = "http://saskatoon.cs.rit.edu:4241/sards"
  var proxy = "proxy.php";
 
+function resetRightDiv() {
+	document.getElementById( "rightSide" ).innerHTML = "<img src=\"Beacon_logo.jpg\" width=\"100%\" />";
+}
+ 
 /*called by View Sheets ... buttons.  If called with the user input filled in, it will get the users
 **only for that user
 */
