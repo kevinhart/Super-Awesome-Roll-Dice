@@ -214,9 +214,10 @@ public class SARDS implements Provider< Source > {
 			resultBuilder.append("]}");
 			}else{
 			resultBuilder.append("}");
+			return "{\"r\":1,\"t\":\"[xQueryStatement] Success.\",\"d\":" + "{no characters meet this critera}" + "}";
 			}
 			String result = resultBuilder.toString();
-		return "{\"r\":0,\"t\":\"[xQueryStatement] Success.\",\"d\":" + result + "}";
+			return "{\"r\":0,\"t\":\"[xQueryStatement] Success.\",\"d\":" + result + "}";
 	}
 	
 	
