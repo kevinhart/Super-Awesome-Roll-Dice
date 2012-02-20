@@ -274,44 +274,44 @@ function searchForSheet(){
 	var query = "";
 	var input = document.getElementById("StrInput");
 	if(input.value != ""){
-		query += "(strength,"+parseInt(input.value)+",2)";
+		query += "(strength, "+parseInt(input.value)+", 2)";
 	}
 	
 	input = document.getElementById("DexInput");
 	if(input.value != ""){
-		query += "(dexterity,"+parseInt(input.value)+",2)";
+		query += "(dexterity, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("MindInput");
 	if(input.value != ""){
-		query += "(mind,"+parseInt(input.value)+",2)";
+		query += "(mind, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("ChaInput");
 	if(input.value != ""){
-		query += "(charisma,"+parseInt(input.value)+",2)";
+		query += "(charisma, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("physInput");
 	if(input.value != ""){
-		query += "(physical,"+parseInt(input.value)+",2)";
+		query += "(physical, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("subInput");
 	if(input.value != ""){
-		query += "(search,"+parseInt(input.value)+",2)";
+		query += "(search, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("knowInput");
 	if(input.value != ""){
-		query += "(knowledge,"+parseInt(input.value)+",2)";
+		query += "(knowledge, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("comInput");
 	if(input.value != ""){
-		query += "(communication,"+parseInt(input.value)+",2)";
+		query += "(communication, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("surInput");
 	if(input.value != ""){
-		query += "(survival,"+parseInt(input.value)+",2)";
+		query += "(survival, "+parseInt(input.value)+", 2)";
 	}
 	input = document.getElementById("fabInput");
 	if(input.value != ""){
-		query += "(fabrication,"+parseInt(input.value)+",2)";
+		query += "(fabrication, "+parseInt(input.value)+", 2)";
 	}
 	var url = wsAddress + "?action=query&querystring="+query;
 		$.ajax( {
