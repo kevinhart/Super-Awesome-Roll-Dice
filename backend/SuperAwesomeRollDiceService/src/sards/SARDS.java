@@ -177,7 +177,7 @@ public class SARDS implements Provider< Source > {
 		if(tmp[2].equals("1")){
 			Xquery.append("=");
 		}else if(tmp[2].equals("2")){
-			Xquery.append(">");
+			Xquery.append(">=");
 		}else{
 			Xquery.append("<");
 		}
@@ -209,8 +209,6 @@ public class SARDS implements Provider< Source > {
 				}
 					resultBuilder.append("\""+tmp[1]+"\", ");
 			}
-			
-			
 			resultBuilder.delete(resultBuilder.length()-2,resultBuilder.length());
 			resultBuilder.append("]]");
 			String result = resultBuilder.toString();
